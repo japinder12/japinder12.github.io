@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS 180 Project 3</title>
+    <style>
+        body {
+            font-family: "Titillium Web", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, "Lucida Grande", sans-serif;
+            font-weight: 300;
+            font-size: 18px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 60%;
+            background-color: #f5f5f5;
+        }
+
+        h1, h2 {
+            font-size: 35px;
+            font-weight: 300;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 25px;
+            font-weight: 300;
+            text-align: center;
+            line-height: 30px;
+        }
+
+        .code {
+            font-size: 18px;
+            font-family: "Courier New", Courier, monospace;
+            background-color: #f0f0f0;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .equation {
+            text-align: center;
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin: 20px 0;
+            font-family: "Courier New", Courier, monospace;
+        }
+
+        .description {
+            margin-bottom: 30px;
+            text-align: justify;
+        }
+
+        .centered-text {
+            text-align: center;
+        }
+
+        .comparison-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+            border-collapse: collapse;
+        }
+
+        .comparison-row {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .comparison-image {
+            width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+
+        .centered-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .centered-image {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 75%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .image-title, .image-description {
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .image-container {
+            text-align: center;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .column-title {
+            grid-column: span 1;
+            font-size: 30px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .table-title {
+            grid-column: span 2;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Project 3: Face Morphing</h1>
+    </header>
+
+    <main>
+        <section class="description">
+            <h3>Project Overview</h3>
+            <p>
+                Morphing some faces, changing races, and becoming one with my friend Keval.
+            </p>
+        </section>
+
+            <p>Using the tool provided for labelling corresponding keypoints between faces, I took the portraits of myself and Keval, labelled them, and calculated the midway shape triangulation using the <code>Delaunay</code> package from the scipy library, which is shown in Part 2.</p>
+
+            <div class="comparison-container">
+                <div class="comparison-row">
+                    <img src="images/japinder.jpeg" class="comparison-image">
+                    <div class="image-title">Portrait of me</div>
+                </div>
+    
+                <div class="comparison-row">
+                    <img src="images/keval.jpeg" class="comparison-image">
+                    <div class="image-title">Portrait of Keval</div>
+                </div>
+            </div>
+
+            <div class="comparison-container">
+                <div class="comparison-row">
+                    <img src="images/part1-1.png" class="comparison-image">
+                    <div class="image-title">Me with Keypoints</div>
+                </div>
+    
+                <div class="comparison-row">
+                    <img src="images/part1-2.png" class="comparison-image">
+                    <div class="image-title">Keval with Keypoints</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="description">
+            <h3>Part 2: Computing the "Mid-way Face"</h3>
+            <p>
+                The next step was calculating the "mid-way face" between both images. This was done by looping through each triangle in the triangulation and transforming them to their corresponding positions in the mid-way face.
+            </p>
+            <p>
+                To derive the affine transformation, we can set up a system of equations to map the three points of the source triangle to the three points in the mid-way triangle. The coordinates for each point in the mid-way triangle are defined as follows:
+            </p>
+            <div class="equation">
+                xi' = a * x + b * y + c <br>
+                yi' = d * x + e * y + f
+            </div>
+            <p>
+                Since each triangle has three points, it yields get six equations in total, which are arranged in a matrix form. By solving this system, with the known start and mid-way points, we can calculate the affine transformation.
+            </p>
+
+            <p>
+                After obtaining the values of <span class="code">a</span>, <span class="code">b</span>, <span class="code">c</span>, <span class="code">d</span>, <span class="code">e</span>, and <span class="code">f</span>, these are placed into the affine transformation matrix. A value of <span class="code">1</span> is added to the last column of the bottom row to convert it to homogeneous coordinates.
+            </p>
+
+            <p>
+                After warping all triangles, the individual pieces are combined into the mid-way image. Finally, to generate the "mid-way face," the pixel values from both original images are averaged, producing the resulting image.
+            </p>
+
+            <div class="centered-container">
+                <img src="images/part1-3.png" class="comparison-image" style="width: 50%;">
+                <div class="image-title">Midway Triangulation</div>
+            </div>
+            
+
+            <div class="centered-container">
+                <img src="images/part2.png" class="comparison-image">
+                <div class="image-title">Midway Image</div>
+            </div>
+            
+            </div>
+        </section>
+
+        <section class="description">
+            <h3>Part 3: The Morph Sequence</h3>
+            <p>
+                To generate a morph sequence between two faces, I applied the same morphing technique from Part 2, but vary the fraction of warping and blending. A parameter, ranging from 0 to 1, controls how much of each face is incorporated. When the parameter is set to 0, the output is the first face, and when it's set to 1, the output becomes the second face. Values in between create a gradual transition from one face to the other.
+            </p>
+            
+            <div class="centered-container">
+                <img src="images/japinder_keval_inf.gif" class="comparison-image">
+                <div class="image-title">Morphing from Japinder to Keval</div>
+            </div>
+
+            <p>
+                One limitation, due to unchangeable appearance-related attributes, is that the morph in top part of the image, as well as the beard/jaw area, is not as smooth as the rest of the face. This, unavoidably, is due to the fact that I wear a turban, while my friend does not, making it seem that his hair "fades" in from thing air. Similarly, it somewhat appears like my beard dissappears, since I had trouble using corresponding points on Keval in that region since he doesn't have a beard.
+            </p>
+        </section>
+    
+        <section class="description">
+            <h3>Part 4: The "Mean face" of a population</h3>
+            <p>
+                Using photos from this <a href="https://fei.edu.br/~cet/facedatabase.html">FEIFace Database</a>, I used the aligned, spatially normalized dataset. After removing all smiling pics, I had 100 images of people with a neutral expression, which is what I averaged. Using the given 46 datapoints for each image which served as keypoints (landmarks), I determined and plotted the Delaunay triangulation for the average face.
+            </p>
+
+            <div class="comparison-container">
+                <div class="comparison-row">
+                    <img src="images/mean_face.jpg" class="comparison-image">
+                    <div class="image-title">Mean Face</div>
+                </div>
+    
+                <div class="comparison-row">
+                    <img src="images/mean_face_tri.png" class="comparison-image">
+                    <div class="image-title">Mean Face Triangulation</div>
+                </div>
+            </div>
+        
+            <p>Warping Individual Faces to the Mean Face</p>
+            <p>
+                Once the mean face was computed, I warped each face from the dataset to the mean face's geometry. Below are examples of individual faces warped to the mean face.
+            </p>
+    
+            <div class="centered-container">
+                <img src="images/pop_mean_face.png" class="comparison-image">
+                <div class="image-title">Morphing from Japinder to Keval</div>
+            </div>
+        
+            <p>Warping My Face and the Mean Face</p>
+
+            <p>
+                To warp my own face to the mean face, I first had to label my face with the same landmarks used for the faces in the database.
+            </p>
+
+            <div class="comparison-container">
+                <div class="comparison-row">
+                    <img src="images/me_numbered.png" class="comparison-image">
+                    <div class="image-title">My Face Labelled</div>
+                </div>
+    
+                <div class="comparison-row">
+                    <img src="images/mean_numbered.png" class="comparison-image">
+                    <div class="image-title">Mean Face Labelled</div>
+                </div>
+            </div>
+            
+            <p>Below is the result of warping my face to the mean geometry and warping the mean face to my geometry. Evidently, due to me not being able to crop my turban and beard, the alignment could use some improvment. It is interesting to note how the mean face stretched at the forehead and neck, the areas that had few points and also vary the most visually between myself and the mean face.
+            </p>
+            
+            <div class="centered-container">
+                <img src="images/me_mean_warps.png" class="comparison-image">
+                <div class="image-title"></div>
+            </div>
+        </section>
+
+        <section>
+            <h3>Part 5: Caricatures - Extrapolating from the mean</h3>
+
+            <p>
+                To create the extrapolation, I first calculated the difference between the keypoints on my face and those on the mean face. By adjusting this difference, I could either bring my appearance closer to or further from the mean face. This adjustment was controlled by a scaling factor, &alpha;, which ranged from 0.0 to 1.8. The transformation was applied using the following formula:
+            </p>
+            
+            <div class="equation">
+                new_shape = my_face + &alpha; &times; (my_face - mean_face)
+            </div>
+            
+            <p>
+                Using this approach, I was able to achieve the following results.
+            </p>
+
+            <div class="image-grid">
+                <div class="image-container">
+                    <img src="images/caricature_0.jpg" alt="Face 1 warped to the mean face">
+                    <div class="image-title">Face 1 warped to the mean face with alpha = 0.0</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/caricature_0.5.jpg" alt="Face 2 warped to the mean face">
+                    <div class="image-title">Face 2 warped to the mean face with alpha = 0.5</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/caricature_0.8.jpg" alt="Face 3 warped to the mean face">
+                    <div class="image-title">Face 3 warped to the mean face with alpha = 0.8</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/caricature_1.2.jpg" alt="Face 4 warped to the mean face">
+                    <div class="image-title">Face 4 warped to the mean face with alpha = 1.2</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/caricature_1.5.jpg" alt="Face 5 warped to the mean face">
+                    <div class="image-title">Face 5 warped to the mean face with alpha = 1.5</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/caricature_1.8.jpg" alt="Face 6 warped to the mean face">
+                    <div class="image-title">Face 6 warped to the mean face with alpha = 1.8</div>
+                </div>
+            </div>
+
+            <p>
+                As mentioned earlier, due to variations in image cropping, even with a small alpha value, the outcome is an exaggerated result, with my face looking quite wide and rectangular. As the alpha increases, my face shrink horizontally and stretches vertically, resulting in my forehead and jaw getting bigger as the centre of my face shrinks.
+            </p>
+        </section>
+
+        <h3>B&W: Becoming Japanese</h2>
+        
+            <p>
+                For the bells and whistles, I decided that I want to try to make myself look Japanese. I found a picture of the mean face of a group of Japanese men from 
+                <a href="https://pmsol3.wordpress.com/2009/10/10/world-of-facial-averages-east-southeast-asia-pacific-islander/">this blog</a>. I then cropped my image to try and match the size of the mean face of the Japanese group.
+            </p>
+        
+
+
+            <div class="comparison-container">
+                <div class="comparison-row">
+                    <img src="images/japanese_man.png">
+                    <div class="image-title">The mean face of Japanese men</div>
+                </div>
+    
+                <div class="comparison-row">
+                    <img src="images/japinder_bw.jpeg">
+                    <div class="image-title">Portrait of me (resized)</div>
+                </div>
+            
+                <div class="comparison-row">
+                    <img src="images/japanese_tri.png">
+                    <div class="image-title">The mean face of Japanese men with Triangulation</div>
+                </div>
+    
+                <div class="comparison-row">
+                    <img src="images/me_tri.png">
+                    <div class="image-title">Portrait of me (resized) with Triangulation</div>
+                </div>
+            </div>
+        
+            <p>
+                Using the same approach as before, I transformed my face to match the Japanese image. First, I applied the warping technique with a warp value of 0.7 and a dissolve value of 0, focusing solely on adjusting my facial structure to resemble the Japanese shape, which meant my face gets narrower. It also got slightly distorted due to cropping and alignment.
+                
+                Next, I blended the colors while maintaining my original shape by setting the warp value to 0 and the dissolve value to 0.5. This resulted in my beard fading out, since the Japanese average male image has no facial hair. Also, my skin tone changes somewhat accurately.
+
+                Lastly, I combined both shape and color modifications with a warp value of 0.7 and a dissolve value of 0.5. These steps produced the following results:
+            </p>
+
+            <div class="image-grid">
+                <div class="image-container">
+                    <img src="images/j1.png">
+                    <div class="image-title">Portrait of me with Japanese shape</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/j2.png">
+                    <div class="image-title">Portrait of me with Japanese colour</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/j3.png">
+                    <div class="image-title">Portrait of me with Japanese shape and colour</div>
+                </div>
+                
+            </div>
+
+        <section class="description">
+            <h2>Acknowledgements</h2>
+            <p>
+                This project is a course project for CS 180 at UC Berkeley. Part of the starter code is provided by course staff. This website template is referenced from Bill Zheng.
+            </p>
+        </section>
+    </main>
+</body>
+</html>
