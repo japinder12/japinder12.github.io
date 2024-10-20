@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <title>CS 180 Project 4</title>
+    <style>
+        body {
+            font-family: "Titillium Web", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, "Lucida Grande", sans-serif;
+            font-weight: 300;
+            font-size: 18px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 60%;
+            background-color: #f5f5f5;
+        }
+
+        h1, h2 {
+            font-size: 35px;
+            font-weight: 300;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 25px;
+            font-weight: 300;
+            text-align: center;
+            line-height: 30px;
+        }
+
+        .code {
+            font-size: 18px;
+            font-family: "Courier New", Courier, monospace;
+            background-color: #f0f0f0;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .equation {
+            text-align: center;
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin: 20px 0;
+            font-family: "Courier New", Courier, monospace;
+        }
+
+        .description {
+            margin-bottom: 30px;
+            text-align: justify;
+        }
+
+        .centered-text {
+            text-align: center;
+        }
+
+        .comparison-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+            border-collapse: collapse;
+        }
+
+        .comparison-row {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .comparison-image {
+            width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+
+        .centered-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .centered-image {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 75%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .image-title, .image-description {
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .image-container {
+            text-align: center;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .column-title {
+            grid-column: span 1;
+            font-size: 30px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .table-title {
+            grid-column: span 2;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Project 4: (Auto)Stitching Photo Mosaics</h1>
+    </header>
+
+    <main>
+        <section class="description">
+            <h2>Project Overview</h2>
+            <p>
+                Rectifying some crooked paintings, and stitching together a keyboard.
+            </p>
+        </section>
+
+        <section class="description">
+            <h2>Computing Homography Matrix</h2>
+            <p>
+                The goal is to find a homography matrix that transforms points from one image to another. The relationship between points can be expressed in homogeneous coordinates as:
+            </p>
+            <div class="equation">
+                $$ q = H \cdot p, \text{ with } q, p \text{ both in homogeneous coordinates} $$
+            </div>
+        
+            <div class="equation">
+                $$ \begin{pmatrix} w \cdot q_1 \\ w \cdot q_2 \\ w \end{pmatrix} = 
+                \begin{pmatrix} a & b & c \\ d & e & f \\ g & h & 1 \end{pmatrix} 
+                \begin{pmatrix} p_1 \\ p_2 \\ 1 \end{pmatrix} $$
+            </div>
+        
+            <p class="description">
+                This implies that \( w = g \cdot p_1 + h \cdot p_2 + 1 \). We can substitute this into the relations:
+            </p>
+            <div class="equation">
+                $$ (g \cdot p_1 + h \cdot p_2 + 1) \cdot q_1 = a \cdot p_1 + b \cdot p_2 + c $$
+                $$ (g \cdot p_1 + h \cdot p_2 + 1) \cdot q_2 = d \cdot p_1 + e \cdot p_2 + f $$
+            </div>
+        
+            <p class="description">
+                These equations are not linear in \(p_1\) and \(p_2\), but they are linear in \(a, b, c, d, e, f, g, h\). By stacking this into matrix form, we obtain:
+            </p>
+            <div class="equation">
+                $$ \begin{pmatrix} p_1 & p_2 & 1 & 0 & 0 & 0 & -p_1 \cdot q_1 & -p_2 \cdot q_1 \\ 
+                0 & 0 & 0 & p_1 & p_2 & 1 & -p_1 \cdot q_2 & -p_2 \cdot q_2 \end{pmatrix}
+                \begin{pmatrix} a \\ b \\ c \\ d \\ e \\ f \\ g \\ h \end{pmatrix} 
+                = \begin{pmatrix} q_1 \\ q_2 \end{pmatrix} $$
+            </div>
+        
+            <p class="description">
+                The left data matrix and right data vector are extended by 2 rows for each additional correspondence. We require at least 4 correspondences between the two images for the system to not be underdetermined.
+            </p>
+        </section>
+        
+
+        <section class="description">
+            <h2>Rectifying Images</h2>
+
+            <div class="comparison-container">
+                <div class="comparison-row">
+                    <img src="images/painting1_small.jpeg" class="comparison-image">
+                    <div class="image-title">Original Painting 1</div>
+                </div>
+    
+                <div class="comparison-row">
+                    <img src="images/warped1.jpeg" class="comparison-image">
+                    <div class="image-title">Rectifying Painting 1</div>
+                </div>
+            </div>
+
+            <div class="comparison-container">
+                <div class="comparison-row">
+                    <img src="images/painting2_small.jpeg" class="comparison-image">
+                    <div class="image-title">Original Painting 2</div>
+                </div>
+    
+                <div class="comparison-row">
+                    <img src="images/warped2.jpeg" class="comparison-image">
+                    <div class="image-title">Rectifying Painting 2</div>
+                </div>
+            </div>
+
+            <div class="comparison-container">
+                <div class="comparison-row">
+                    <img src="images/painting3_small.jpeg" class="comparison-image">
+                    <div class="image-title">Original Painting 3</div>
+                </div>
+    
+                <div class="comparison-row">
+                    <img src="images/warped3.jpeg" class="comparison-image">
+                    <div class="image-title">Rectifying Painting 3</div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Creating the Mosaic</h2>
+
+            <p>
+               While the results aren't quite what one would expect, for this section of the project, I took 3 images of my keyboard while pivoting my phone on the axis of the camera hub. I then warped the left and right images and stitched them to the middle image and blended.
+            </p>
+            
+
+            <div class="image-grid">
+                <div class="image-container">
+                    <img src="images/key_l_small.jpeg">
+                    <div class="image-title">Keyboard Left</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/key_m_small.jpeg">
+                    <div class="image-title">Keyboard Middle</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/key_r_small.jpeg">
+                    <div class="image-title">Keyboard Right</div>
+                </div>
+            </div>
+
+            <div class="centered-container">
+                <img src="images/final_mosaic_image.png" class="comparison-image">
+                <div class="image-title">Final Mosaic Image</div>
+            </div>
+
+            <p>
+                Due to imperfect mapping, the end result of my mosaic is not quite as clean as I would like.
+            </p>
+        </section>
+
+        <section class="description">
+            <h2>Acknowledgements</h2>
+            <p>
+                This project is a course project for CS 180 at UC Berkeley. Part of the starter code is provided by course staff. This website template is referenced from Bill Zheng.
+            </p>
+        </section>
+    </main>
+</body>
+</html>
