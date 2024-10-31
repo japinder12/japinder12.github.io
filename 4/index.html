@@ -204,7 +204,7 @@
                 </div>
     
                 <div class="comparison-row">
-                    <img src="images/warped1.jpeg" class="comparison-image">
+                    <img src="images/warp1.jpeg" class="comparison-image">
                     <div class="image-title">Rectifying Painting 1</div>
                 </div>
             </div>
@@ -216,7 +216,7 @@
                 </div>
     
                 <div class="comparison-row">
-                    <img src="images/warped2.jpeg" class="comparison-image">
+                    <img src="images/warp2.jpeg" class="comparison-image">
                     <div class="image-title">Rectifying Painting 2</div>
                 </div>
             </div>
@@ -228,14 +228,14 @@
                 </div>
     
                 <div class="comparison-row">
-                    <img src="images/warped3.jpeg" class="comparison-image">
+                    <img src="images/warp3.jpeg" class="comparison-image">
                     <div class="image-title">Rectifying Painting 3</div>
                 </div>
             </div>
         </section>
 
         <section>
-            <h2>Creating the Mosaic</h2>
+            <h2>Creating the Mosaic Manually</h2>
 
             <p>
                While the results aren't quite what one would expect, for this section of the project, I took 3 images of my keyboard while pivoting my phone on the axis of the camera hub. I then warped the left and right images and stitched them to the middle image and blended.
@@ -244,28 +244,194 @@
 
             <div class="image-grid">
                 <div class="image-container">
-                    <img src="images/key_l_small.jpeg">
+                    <img src="images/key_left.jpeg">
                     <div class="image-title">Keyboard Left</div>
                 </div>
                 <div class="image-container">
-                    <img src="images/key_m_small.jpeg">
+                    <img src="images/key_mid.jpeg">
                     <div class="image-title">Keyboard Middle</div>
                 </div>
                 <div class="image-container">
-                    <img src="images/key_r_small.jpeg">
+                    <img src="images/key_right.jpeg">
                     <div class="image-title">Keyboard Right</div>
                 </div>
             </div>
 
+            <div class="comparison-container">
+                <div class="comparison-row">
+                    <img src="images/key_left_keypoints.png" class="comparison-image">
+                    <div class="image-title">Left Image with Keypoints</div>
+                </div>
+    
+                <div class="comparison-row">
+                    <img src="images/key_mid_left_keypoints.png" class="comparison-image">
+                    <div class="image-title">Middle Image with Left-Corresponding Keypoints</div>
+                </div>
+            </div>
+
+            <div class="comparison-container">
+                <div class="comparison-row">
+                    <img src="images/key_mid_right_keypoints.png" class="comparison-image">
+                    <div class="image-title">Middle Image with Right-Corresponding Keypoints</div>
+                </div>
+    
+                <div class="comparison-row">
+                    <img src="images//key_right_keypoints.png" class="comparison-image">
+                    <div class="image-title">Right Image with Keypoints</div>
+                </div>
+            </div>
+
             <div class="centered-container">
-                <img src="images/final_mosaic_image.png" class="comparison-image">
-                <div class="image-title">Final Mosaic Image</div>
+                <img src="images/key_mosaic_manual.png" class="comparison-image">
+                <div class="image-title">Manual Mosaic Image</div>
             </div>
 
             <p>
-                Due to imperfect mapping, the end result of my mosaic is not quite as clean as I would like.
+                Due to some lighting imbalance, the end result of my mosaic is not quite as clean as I would like While the alignment and image rectification is decent for the left and right images, I believe that an accident change in lighting caused an issue with the alignment of the middle image component.
             </p>
         </section>
+
+        <section>
+            <h2>Harris Corner Detection</h2>
+
+            <p>
+               Utilizing the provided code for Harris corner detection, I ran that code and plotted these images, which list all possible corner coordinates. This yields far too many corners for it to be of any use. Thus, in the next section, ANMS is used to reduce the number of potential keypoints to the ones that represent the strongest, or best-fit, corners. These corners are identitified throughout the image
+            </p>
+
+            <div class="centered-container">
+                <img src="images/ih_mid.jpeg" class="comparison-image">
+                <div class="image-title">Center Image of ihouse</div>
+            </div>            
+
+            <div class="centered-container">
+                <img src="images/harris_ih.png" class="comparison-image">
+                <div class="image-title">Harris Corners</div>
+                </div>
+    
+            <h2>Adaptive Non-Maximal Suppression</h2>
+
+            <div class="centered-container">
+                <img src="images/anms_ih.png" class="comparison-image">
+                <div class="image-title">ANMS</div>
+                </div>
+            </div>
+
+            <p>
+                Identifying all the Harris interest points typically results in a dense set of points. To reduce this set to a more useful number, I utilized the Adaptive Non-Maximal Suppression (ANMS) algorithm as per the geuidelines. The goal was to select interest points that were both well-distributed and had a strong corner response.</p>
+                
+                <p>The algorithm operates by first sorting the detected Harris points based on their response strength. For each point \( x_i \), I identified all other points \( x_j \) with a greater response strength and multiplied each response by a factor of \( c_{\text{robust}} \) (which was set to 0.9). I then computed the distance \( r_i \) between each point \( x_i \) and its closest stronger point. This distance calculation can be expressed by the following equation:</p>
+                
+                <p style="text-align: center;">\( r_i = \min_j \| x_i - x_j \|, \quad \text{subject to} \quad f(x_i) < c_{\text{robust}} \cdot f(x_j), \quad x_j \in \mathcal{I} \)</p>
+                
+                <p>where \( f(x) \) denotes the corner response strength of point \( x \), and \( \mathcal{I} \) is the set of all detected points.</p>
+                
+                <p>After calculating this list of distances, I sorted the points and selected the strongest ones that were furthest from their neighbors. In this case, I chose to keep 500 points as described in the paper, ensuring a balance between point density and distribution.</p>
+        </section>
+
+        <section>
+            <h2>Feature Extraction</h2>
+            <p>
+                According to the paper, subsampling a larger patch around an interest point to create feature descriptors enhances their overall effectiveness. However, to prevent aliasing, it is essential to appropriately blur the image before this step, ensuring that frequencies beyond the Nyquist limit are removed prior to subsampling. For this simplified implementation, an axis-aligned patch is used, and the feature detection occurs only at a single level of the Gaussian pyramid.
+            </p>
+                
+            <h2>Feature Matching</h2>
+            <p>
+                After extracting these basic features, the pairwise distances between features in one image and those in another are calculated. The ratio of the error between the closest and second-closest neighbors (commonly referred to as Lowe's ratio) is then computed and used as a threshold. This approach provides better discrimination than relying solely on the distance to the nearest neighbor.
+            </p>
+
+            <h2>RANSAC (<b>RA</b>ndom <b>SA</b>mple <b>C</b>onsensus)</h2>
+            <p>
+                Getting matches between paired images isn't enough since not all matches are accurate. Thus, the RANSAC algorithm was used to identify inliers within the set of matches and ensure only spatially accurate matches are kept. Essentially, RANSAC gets rid of false positives.
+            </p>
+
+            <p>
+                Below is the visualization of the matches after feature extraction, matching, and RANSAC-ing.
+            </p>
+
+            <div class="comparison-container">
+                <div class="comparison-row">
+                    <img src="images/ih_left_mid_matches.png" class="comparison-image">
+                    <div class="image-title">ihouse Left and Middle Image Keypoint Pairings</div>
+                </div>
+    
+                <div class="comparison-row">
+                    <img src="images/ih_mid_right_matches.png" class="comparison-image">
+                    <div class="image-title">ihouse Middle and Right Image Keypoint Pairings</div>
+                </div>
+            </div>
+
+            <p>
+                This process results in the following panorama for ihouse.
+            </p>
+
+            <div class="centered-container">
+                <img src="images/ih_panorama.png" class="comparison-image">
+                <div class="image-title">ihouse Panorama Result</div>
+                </div>
+            </div>
+
+            <p>
+                I repeated this process for 2 more sets of images: a courtyard and lounge hall within ihouse. As you can see, I did not end up travelling far to shoot.
+            </p>
+
+            <div class="comparison-container">
+                <div class="comparison-row">
+                    <img src="images/court_left_mid_matches.png" class="comparison-image">
+                    <div class="image-title">Courtyard Left and Middle Image Keypoint Pairings</div>
+                </div>
+    
+                <div class="comparison-row">
+                    <img src="images/court_mid_right_matches.png" class="comparison-image">
+                    <div class="image-title">Courtyard Middle and Right Image Keypoint Pairings</div>
+                </div>
+            </div>
+
+            <div class="centered-container">
+                <img src="images/court_panorama.png" class="comparison-image">
+                <div class="image-title">Courtyard Panorama Result</div>
+                </div>
+            </div>
+
+            <div class="comparison-container">
+                <div class="comparison-row">
+                    <img src="images/hall_left_mid_matches.png" class="comparison-image">
+                    <div class="image-title">Lounge Hall Left and Middle Image Keypoint Pairings</div>
+                </div>
+    
+                <div class="comparison-row">
+                    <img src="images/hall_mid_right_matches.png" class="comparison-image">
+                    <div class="image-title">Lounge Hall Middle and Right Image Keypoint Pairings</div>
+                </div>
+            </div>
+
+            <div class="centered-container">
+                <img src="images/hall_panorama.png" class="comparison-image">
+                <div class="image-title">Lounge Hall Panorama Result</div>
+                </div>
+            </div>
+
+            <p> Manual Results</p>
+            <div class="image-grid">
+                <div class="image-container">
+                    <img src="images/ihouse_manual.png">
+                    <div class="image-title">ihouse Manual</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/court_manual.png">
+                    <div class="image-title">Courtyard Manual</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/hall_manual.png">
+                    <div class="image-title">Lounge Hall Manual</div>
+                </div>
+                
+            </div>
+
+        </section>
+
+        <p>
+            Overall, this project was quite interesting, as well as challenging. I certainly learnt a lot about image warping and alignment, and how much harder it actually is to implement than I thought. The agony of manually selecting points, and then debugging the autostitching code for Part B of the project was definitely balanced out by the enjoyment of seeing somewhat decent panorama results. However, I do think that using a more robust method of blending would have produced even better panoramas.
+        </p>
 
         <section class="description">
             <h2>Acknowledgements</h2>
