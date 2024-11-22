@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <title>CS 180 Project 5</title>
+    <style>
+        body {
+            font-family: "Titillium Web", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, "Lucida Grande", sans-serif;
+            font-weight: 300;
+            font-size: 18px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 60%;
+            background-color: #f5f5f5;
+        }
+
+        h1, h2 {
+            font-size: 35px;
+            font-weight: 300;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 25px;
+            font-weight: 300;
+            text-align: center;
+            line-height: 30px;
+        }
+
+        .code {
+            font-size: 18px;
+            font-family: "Courier New", Courier, monospace;
+            background-color: #f0f0f0;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .equation {
+            text-align: center;
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin: 20px 0;
+            font-family: "Courier New", Courier, monospace;
+        }
+
+        .description {
+            margin-bottom: 30px;
+            text-align: justify;
+        }
+
+        .centered-text {
+            text-align: center;
+        }
+
+        .comparison-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+            border-collapse: collapse;
+        }
+
+        .comparison-row {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .comparison-image {
+            width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+
+        .centered-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .centered-image {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 75%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .image-title, .image-description {
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .image-container {
+            text-align: center;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .column-title {
+            grid-column: span 1;
+            font-size: 30px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .table-title {
+            grid-column: span 2;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Project 5: Diffusion Models</h1>
+    </header>
+
+    <main>
+        <section class="description">
+            <h2>Project Overview</h2>
+            <p>
+                Generating images using diffusion models.
+            </p>
+        </section>
+
+        <section class="description">
+            <h2>Part A</h2>
+            <p>
+                In this project, we used diffusion models to generate images. The initial task was to run a pre-existing model using three pre-defined prompts. Using a seed value of 200 and 20 inference steps, the following outputs were produced:
+            </p>
+
+            <div class="image-grid">
+                <div class="image-container">
+                    <img src="images/snowy_village20.png">
+                    <div class="image-title">Prompt: "an oil painting of a snowy mountain village"</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/man_hat20.png">
+                    <div class="image-title">Prompt: "a man wearing a hat"</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/rocket20.png">
+                    <div class="image-title">Prompt: "a rocket ship"</div>
+                </div>
+            </div>
+
+            <p>
+                In this project, we used diffusion models to generate images. The initial task was to run a pre-existing model using three pre-defined prompts. Using the values, 60 and 180 for the number of inference steps, the following outputs were produced:
+            </p>
+
+            <div class="image-grid">
+                <div class="image-container">
+                    <img src="images/snowy_village60.png">
+                    <div class="image-title">Prompt: "an oil painting of a snowy mountain village" at 60</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/man_hat60.png">
+                    <div class="image-title">Prompt: "a man wearing a hat" at 60</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/rocket60.png">
+                    <div class="image-title">Prompt: "a rocket ship" at 60</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/snowy_village180.png">
+                    <div class="image-title">Prompt: "an oil painting of a snowy mountain village" at 180</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/man_hat180.png">
+                    <div class="image-title">Prompt: "a man wearing a hat" at 180</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/rocket180.png">
+                    <div class="image-title">Prompt: "a rocket ship" at 180</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="description">
+            <h2>Implementing the Forward Process</h2>
+            <p>
+                I implemented my forward process using the following equation:
+            </p>
+            
+            <div class="equation">
+                \( x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \epsilon \quad \text{where} \quad \epsilon \sim N(0, 1) \)
+            </div>
+
+            <p>
+                Then, using the provided image of the campanile, I ran the forward process to add noise to the image, displaying the results at steps 250, 500, and 750.
+            </p>
+
+            <div class="centered-container">
+                <img src="images/forward.png" class="comparison-image">
+                <div class="image-title">Displaying noise at various steps</div>
+                </div>
+            </div>
+        
+            <h3>Classical Denoising</h3>
+            <p>
+                For classical denoising, I used <code>TF.gaussian_blur</code> to blur the image(s) after each step. While this made the image less noisy, after 750 steps, the result is quite blurry and difficult to make out what the original image actually was.
+            </p>
+
+            <div class="centered-container">
+                <img src="images/noising_classical.png" class="comparison-image">
+                <div class="image-title">Noisy Images</div>
+                </div>
+            </div>
+
+            <div class="centered-container">
+                <img src="images/denoising_classical.png" class="comparison-image">
+                <div class="image-title">Classical Denoising displayed at various steps</div>
+                </div>
+            </div>
+
+            <h3>One-Step Denoising</h3>
+            <p>
+                For one-step denoising, I utilized the pre-trained UNet model,  <code>stage_1.unet</code>, to yield the denoised image. Below are the results at 250, 500, and 750 steps.
+            </p>
+
+            <div class="centered-container">
+                <img src="images/one_step250.png" class="comparison-image">
+                </div>
+            </div>
+            <div class="centered-container">
+                <img src="images/one_step500.png" class="comparison-image">
+                </div>
+            </div>
+            <div class="centered-container">
+                <img src="images/one_step750.png" class="comparison-image">
+                </div>
+            </div>
+
+            <h3>Iterative Denoising</h3>
+            <p>
+                For iterative denoising, the main difference in the approach was denoising bit by bit, going down from timestep 690, with a stride of 30. Below are some results at regular intervals.
+            </p>
+
+            <div class="image-grid">
+                <div class="image-container">
+                    <img src="images/denoised690.png">
+                    <div class="image-title">Timestep: 690</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/denoised540.png">
+                    <div class="image-title">Timestep: 540</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/denoised390.png">
+                    <div class="image-title">Timestep: 390</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/denoised240.png">
+                    <div class="image-title">Timestep: 240</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/denoised90.png">
+                    <div class="image-title">Timestep: 90</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/denoised30.png">
+                    <div class="image-title">Final Estimated Image</div>
+                </div>
+            </div>       
+
+        <section class="description">
+            <h3>Diffusion Model Sampling</h3>
+            <p>
+                To create new images from scratch, some random noise was generated and then I used the <code>iterative_denoise</code> function, resulting in the following 5 images.
+            </p>
+
+            <div class="image-grid">
+                <div class="image-container">
+                    <img src="images/diffmod1.png">
+                    <div class="image-title">Generated Image 1</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/diffmod2.png">
+                    <div class="image-title">Generated Image 2</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/diffmod3.png">
+                    <div class="image-title">Generated Image 3</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/diffmod4.png">
+                    <div class="image-title">Generated Image 4</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/diffmod5.png">
+                    <div class="image-title">Generated Image 5</div>
+                </div>
+            </div>
+            
+            <h3>Classifier-Free Guidance</h3>
+            <p>
+                To improve the image quality, I used classifier-free guidance. This technique involves estimating noise conditioned on a text prompt (\(\epsilon_c\)) and an unconditional noise estimate (\( \epsilon_u\)). By applying the formula below, with (\(\gamma\)) = 7
+            </p>
+            <div class="equation">
+                \( \epsilon = \epsilon_u + \gamma (\epsilon_c - \epsilon_u) \)
+            </div>
+            <p>
+                Due to iterative denoising starung teh same, the results improve significantly. The results are not as diverse as before since the model steers towards one direction, but the quality of images dramatically increased, as shown below.
+            </p>
+            
+            <div class="image-grid">
+                <div class="image-container">
+                    <img src="images/gen1.png">
+                    <div class="image-title">Generated Image 1</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/gen2.png">
+                    <div class="image-title">Generated Image 2</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/gen3.png">
+                    <div class="image-title">Generated Image 3</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/gen4.png">
+                    <div class="image-title">Generated Image 4</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/gen5.png">
+                    <div class="image-title">Generated Image 5</div>
+                </div>
+            </div>
+
+            <h3>Image-to-Image Translation</h3>
+            <p>
+                In this section, I applied iterative classifier-free guidance denoising to recreate an image of the Campanile. Using the prompt "a high-quality photo" and noise levels ranging from 1 to 20, I observed that as the noise level increased, the generated images progressively resembled the original more closely
+            </p>
+
+            <div class="image-grid">
+                <div class="image-container">
+                    <img src="images/tower1.png">
+                    <div class="image-title">Campanile at noise level 1</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/tower2.png">
+                    <div class="image-title">Campanile at noise level 3</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/tower3.png">
+                    <div class="image-title">Campanile at noise level 5</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/tower4.png">
+                    <div class="image-title">Campanile at noise level 7</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/tower5.png">
+                    <div class="image-title">Campanile at noise level 10</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/tower6.png">
+                    <div class="image-title">Campanile at noise level 20</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/original.png">
+                    <div class="image-title">Original Image of Campanile</div>
+                </div>
+            </div>
+
+            <p>
+                Using the same approach, here is the image-to-image translations I created utilizing images of Lionel Messi holding the FIFA World Cup trophy and a random landscape photo I found with rocks and water.
+            </p>
+            <div class="image-grid">
+                <div class="image-container">
+                    <img src="images/messi1.png">
+                    <div class="image-title">Lionel Messi at noise level 1</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/messi2.png">
+                    <div class="image-title">Lionel Messi at noise level 3</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/messi3.png">
+                    <div class="image-title">Lionel Messi at noise level 5</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/messi4.png">
+                    <div class="image-title">Lionel Messi at noise level 7</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/messi5.png">
+                    <div class="image-title">Lionel Messi at noise level 10</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/messi6.png">
+                    <div class="image-title">Lionel Messi at noise level 20</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/messi.png">
+                    <div class="image-title">Original Image of Lionel Messi</div>
+                </div>
+            </div>
+            <div class="image-grid">
+                <div class="image-container">
+                    <img src="images/rocks1.png">
+                    <div class="image-title">Rock Landscape at noise level 1</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/rocks2.png">
+                    <div class="image-title">Rock Landscape at noise level 3</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/rocks3.png">
+                    <div class="image-title">Rock Landscape at noise level 5</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/rocks4.png">
+                    <div class="image-title">Rock Landscape at noise level 7</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/rocks5.png">
+                    <div class="image-title">Rock Landscape at noise level 10</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/rocks6.png">
+                    <div class="image-title">Rock Landscape at noise level 20</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/rocks.jpg">
+                    <div class="image-title">Original Image of Rock Landscape</div>
+                </div>
+            </div>
+
+            <h3>Text-Conditional Image-to-Image Translation</h3>
+            <p>
+                For this task, I followed the same denoising process as earlier but experimented with different prompts. Using "a rocket ship" as the prompt for the Campanile, the model produced the images below at various noise levels.
+            </p>
+            <div class="image-grid">
+                <div class="image-container">
+                    <img src="images/rocket_tower1.png">
+                    <div class="image-title">Rocket to Campanile at noise level 1</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/rocket_tower2.png">
+                    <div class="image-title">Rocket to Campanile at noise level 3</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/rocket_tower3.png">
+                    <div class="image-title">Rocket to Campanile at noise level 5</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/rocket_tower4.png">
+                    <div class="image-title">Rocket to Campanile at noise level 7</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/rocket_tower5.png">
+                    <div class="image-title">Rocket to Campanile at noise level 10</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/rocket_tower6.png">
+                    <div class="image-title">Rocket to Campanile at noise level 20</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/original.png">
+                    <div class="image-title">Original Image of Campanile</div>
+                </div>
+            </div>
+
+            <p>
+                Similarly, using the same text prompt, I redid the same process for the Lionel Messi and Rock Landscape images.    
+            </p>
+            <div class="image-grid">
+                <div class="image-container">
+                    <img src="images/rocket_messi1.png">
+                    <div class="image-title">Rocket to Lionel Messi at noise level 1</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/rocket_messi2.png">
+                    <div class="image-title">Rocket to Lionel Messi at noise level 3</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/rocket_messi3.png">
+                    <div class="image-title">Rocket to Lionel Messi at noise level 5</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/rocket_messi4.png">
+                    <div class="image-title">Rocket to Lionel Messi at noise level 7</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/rocket_messi5.png">
+                    <div class="image-title">Rocket to Lionel Messi at noise level 10</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/rocket_messi6.png">
+                    <div class="image-title">Rocket to Lionel Messi at noise level 20</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/messi.png">
+                    <div class="image-title">Original Image of Lionel Messi</div>
+                </div>
+            </div>
+            <div class="image-grid">
+                <div class="image-container">
+                    <img src="images/rocket_rock1.png">
+                    <div class="image-title">Rocket to Rock Landscape at noise level 1</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/rocket_rock2.png">
+                    <div class="image-title">Rocket to Rock Landscape at noise level 3</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/rocket_rock3.png">
+                    <div class="image-title">Rocket to Rock Landscape at noise level 5</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/rocket_rock4.png">
+                    <div class="image-title">Rocket to Rock Landscape at noise level 7</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/rocket_rock5.png">
+                    <div class="image-title">Rocket to Rock Landscape at noise level 10</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/rocket_rock6.png">
+                    <div class="image-title">Rocket to Rock Landscape at noise level 20</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/rocks.jpg">
+                    <div class="image-title">Original Image of Rock Landscape</div>
+                </div>
+            </div>
+
+            <h3>Visual Anagrams</h3>
+            <p>
+                To create a visual anagram, I utilized the UNet model in two stages. First, I denoised the original image, and then I applied the model to denoise the flipped version of the same image. This process resulted in a unique effect where one image is visible when viewed upright, and a completely different image appears when flipped upside down. I then tried a few different pairs of prompts together to create 3 anagram images, resulting in the following:
+            </p>
+            <div class="comparison-container">
+                <div class="comparison-row">
+                    <img src="images/anagram1_amalfi.png" class="comparison-image">
+                    <div class="image-title">Amalfi Coast</div>
+                </div>
+    
+                <div class="comparison-row">
+                    <img src="images/anagram1_rocket.png" class="comparison-image">
+                    <div class="image-title">Rocket (Upside down)</div>
+                </div>
+            </div>
+            <div class="comparison-container">
+                <div class="comparison-row">
+                    <img src="images/anagram2_skull.png" class="comparison-image">
+                    <div class="image-title">Skull</div>
+                </div>
+    
+                <div class="comparison-row">
+                    <img src="images/anagram2_hatman.png" class="comparison-image">
+                    <div class="image-title">Man in hat (Upside down)</div>
+                </div>
+            </div>
+            <div class="comparison-container">
+                <div class="comparison-row">
+                    <img src="images/anagram3_barista.png" class="comparison-image">
+                    <div class="image-title">Hipster Barista</div>
+                </div>
+    
+                <div class="comparison-row">
+                    <img src="images/anagram3_dog.png" class="comparison-image">
+                    <div class="image-title">Dog (Upside down)</div>
+                </div>
+            </div>
+
+            <h3>Hybrid Images</h3>
+            <p>
+                To create hybrid images, I applied a modified version of the approach from the previous task. Instead of combining a denoised image with its flipped counterpart, I merged the denoised high-frequency image with the denoised low-frequency image, similar to what we did in Project 2. This method allows the high-frequency details to stand out when viewed up close, while the low-frequency features dominate when viewed from afar. I then tried a few different pairs of prompts together to get 3 interesting hybrid images, resulting in the following:
+            </p>
+            <div class="image-grid">
+                <div class="image-container">
+                    <img src="images/hybrid1.png">
+                    <div class="image-title">Waterfall x Skull</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/hybrid2.png">
+                    <div class="image-title">Campfire x Pencil</div>
+                </div>
+                <div class="image-container">
+                    <img src="images/hybrid3.png">
+                    <div class="image-title">Amalfi Coast x Dog</div>
+                </div>
+            </div>
+
+        <section>
+            <h2>Part B</h2>
+            
+            <h2>Training a Single-Step Denoising UNet</h2>
+
+            <h3>Implenting the UNet</h3>
+            <p>
+                To implement my own diffusion model, I began by implementing the various classes of options needed for basic building blocks, as outlined in the below diagram.
+            </p>
+
+            <div class="centered-container">
+                <img src="images/unconditional_arch.png" class="comparison-image">
+                <div class="image-title">UNet Architecture</div>
+            </div>
+            <p>
+                Key Components:
+            </p>
+            <ol>
+                <li>Conv: A convolutional layer that changes the channel dimension but keeps the resolution.</li>
+                <li>DownConv: A convolutional layer that downsamples the image by a factor of 2.</li>
+                <li>UpConv: A convolutional layer that upsamples the image by a factor of 2.</li>
+                <li>Flatten: Compresses a 7x7 tensor into a 1x1 tensor using average pooling.</li>
+                <li>Unflatten: Converts a 1x1 tensor back into a 7x7 tensor.</li>
+                <li>Concat: Combines tensors with the same 2D shape along the channel dimension.</li>
+                <li>ConvBlock: Similar to Conv, but includes an additional convolutional layer.</li>
+                <li>DownBlock: Combines DownConv with a ConvBlock for additional functionality.</li>
+                <li>UpBlock: Combines UpConv with a ConvBlock for additional functionality.</li>
+            </ol>
+
+            <h3>Using the UNet to Train a Denoiser</h3>
+            <p>
+                The next step was to train, using MNIST. First, I added noise to the images, which is iteratively added and plotted below.
+            </p>
+
+            <div class="centered-container">
+                <img src="images/digit_noise.png" class="comparison-image">
+            </div>
+
+            <p>
+                I trained the model for 5 epochs with a batch size of 256, setting the noise level to 0.5 and the number of hidden dimensions to 128. The training utilized L2 loss (MSE) and the Adam optimizer with a learning rate of 1e-4. After the final epoch, the model achieved a loss of just 0.0090.
+                
+                Below are the examples of the model's inputs, the corresponding noised images, and the denoised outputs generated by the model. These plots compare the results from the epoch 1 to epoch 5. It is evident that the outputs become much clearer and more closely resemble the input images after the last epoch, demonstrating the model's improved performance over time.
+            </p>
+
+            <div class="centered-container">
+                <img src="images/epoch1.png" class="comparison-image">
+            </div>
+            <div class="centered-container">
+                <img src="images/epoch5.png" class="comparison-image">
+            </div>
+
+            <p>              
+                Below is a graph of the loss vs number of steps. The steady decrease and slow convergence is visible as the model improves with each step.
+            </p>
+
+            <div class="centered-container">
+                <img src="images/training_loss.png" class="comparison-image">
+            </div>
+
+            <p>              
+                After training the model on a noise level of 0.5, I tested its ability to denoise images with varying noise levels: [0.0, 0.2, 0.4, 0.5, 0.6, 0.8, 1.0]. Below are plots showing the noisy input images and the corresponding outputs generated by the model.
+            </p>
+
+            <div class="centered-container">
+                <img src="images/denoise_levels.png" class="comparison-image">
+            </div>
+
+            <p>
+                The model performs well on images with low noise levels, successfully restoring them. However, as the noise level increases to 0.8 or 1.0, the outputs begin to show noticeable artifacts, and the reconstructed images become less accurate, causing the numbers to lose clarity. This demonstrates the model's struggle to handle noise levels beyond its training range.
+            </p>
+
+            <h2>Training a Diffusion Model</h2>
+            <p>
+                In the second section of Part B of this project, I trained the diffusion model, beginning with implementing the time-conditioning for the UNet. This allows the model to accept variably noised images and figure out how to denoise them.
+
+                Below is the plot of the training loss of the model, as well as the results after 5 epochs and 20 epochs respectively. Here we can see visible improvment with more time.
+            </p>
+
+            <div class="centered-container">
+                <img src="images/training_loss2.png" class="comparison-image">
+            </div>
+            <div class="centered-container">
+                <img src="images/training_epoch5.png" class="comparison-image">
+                <div class="image-title">Epoch 5</div>
+            </div>
+            <div class="centered-container">
+                <img src="images/training_epoch20.png" class="comparison-image">
+                <div class="image-title">Epoch 20</div>
+            </div>
+
+            <p>
+                For the next part of the project, I implemented a Class-Conditioned UNet, enabling the model to generate images conditioned on the specific digit class. This was achieved by adding two fully connected layers to the UNet, which take a one-hot encoded class label <i>c</i>, as input. To ensure the model could still function without conditioning, I incorporated a 10% dropout on the class conditioning.
+                
+                Below is the plot of the loss progression over the training steps across 20 epochs, showcasing how the model's performance improved over time.
+            </p>
+
+            <div class="centered-container">
+                <img src="images/training_loss3.png" class="comparison-image">
+            </div>
+            <div class="centered-container">
+                <img src="images/class_epoch5.png" class="comparison-image">
+                <div class="image-title">Epoch 5</div>
+            </div>
+            <div class="centered-container">
+                <img src="images/class_epoch20.png" class="comparison-image">
+                <div class="image-title">Epoch 20</div>
+            </div>
+        </section>
+
+        
+        <section class="description">
+            <h2>Acknowledgements</h2>
+            <p>
+                This project is a course project for CS 180 at UC Berkeley. Part of the starter code is provided by course staff. This website template is referenced from Bill Zheng.
+            </p>
+        </section>
+    </main>
+</body>
+</html>
