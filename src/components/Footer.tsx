@@ -36,8 +36,8 @@ export default function Footer() {
     display: 'inline-grid',
     placeItems: 'center',
     borderRadius: 12,
-    background: 'linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02))',
-    border: '1px solid rgba(255,255,255,0.08)'
+    background: 'linear-gradient(180deg, var(--panel-bg-start), var(--panel-bg-end))',
+    border: '1px solid var(--panel-border)'
   }
 
   return (
@@ -47,11 +47,11 @@ export default function Footer() {
           <div className="row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
             <div className="field">
               <label htmlFor="name">Name</label>
-              <input id="name" name="name" placeholder="Ada Lovelace" autoComplete="name" required />
+              <input id="name" name="name" placeholder="First Last" autoComplete="name" required />
             </div>
             <div className="field">
               <label htmlFor="email">Email</label>
-              <input id="email" type="email" name="email" placeholder="you@example.com" autoComplete="email" required />
+              <input id="email" type="email" name="email" placeholder="your@email.com" autoComplete="email" required />
             </div>
           </div>
           <div className="field">
@@ -66,10 +66,10 @@ export default function Footer() {
           )}
         </form>
 
-        <div>
-          <div style={{ color: 'var(--muted)', fontSize: 12 }}>Let’s build something thoughtful</div>
-          <a href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'email@yourdomain.com'}`} style={{ display: 'inline-block', fontWeight: 600, color: 'var(--text)', textDecoration: 'none', marginTop: 6 }}>{process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'email@yourdomain.com'}</a>
-          <div style={{ display: 'flex', gap: 10, marginTop: 12 }}>
+        <div className="contact-info">
+          <div className="lead">Let’s build something thoughtful</div>
+          <a className="email" href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'email@yourdomain.com'}`}>{process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'email@yourdomain.com'}</a>
+          <div className="socials">
             <a aria-label="GitHub" href={`${process.env.NEXT_PUBLIC_GITHUB_URL || 'https://github.com/japinder12'}`} target="_blank" rel="noreferrer" className="icon-btn" style={iconBtnStyle}>
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
                 <path fillRule="evenodd" clipRule="evenodd" d="M12 .5a11.5 11.5 0 0 0-3.635 22.4c.575.105.785-.25.785-.556 0-.275-.01-1.003-.015-1.97-3.193.694-3.868-1.54-3.868-1.54-.523-1.328-1.278-1.681-1.278-1.681-1.044-.714.08-.699.08-.699 1.154.081 1.762 1.186 1.762 1.186 1.026 1.758 2.694 1.25 3.35.956.104-.744.402-1.25.732-1.538-2.55-.29-5.235-1.275-5.235-5.67 0-1.253.45-2.277 1.185-3.08-.12-.29-.513-1.462.11-3.048 0 0 .965-.31 3.165 1.175a10.98 10.98 0 0 1 5.76 0c2.2-1.485 3.165-1.175 3.165-1.175.623 1.586.23 2.758.113 3.048.737.803 1.184 1.827 1.184 3.08 0 4.408-2.69 5.376-5.252 5.662.413.355.78 1.053.78 2.123 0 1.532-.014 2.767-.014 3.144 0 .308.206.667.792.553A11.5 11.5 0 0 0 12 .5Z" fill="currentColor"/>

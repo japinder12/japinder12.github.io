@@ -2,19 +2,20 @@
 
 import { useRef } from 'react'
 
-type Project = { title: string; blurb: string; tag: string }
+type Project = { title: string; blurb: string; tag: string; href?: string }
 
+const GH = (process.env.NEXT_PUBLIC_GITHUB_URL as string) || 'https://github.com/japinder12'
 const projects: Project[] = [
-  { title: 'Ambient Motion Landing', blurb: 'Hero gradients, scroll bound reveals, subtle parallax.', tag: 'Case Study' },
-  { title: 'Data Viz Microsite', blurb: 'Canvas interactions and narrative scrollytelling.', tag: 'Selected' },
-  { title: 'E-commerce UI Polish', blurb: 'Micro-interactions, a11y, and performance pass.', tag: 'Client' },
-  { title: 'Experimental Nav Patterns', blurb: 'Magnetic hover, inertia, and spring transitions.', tag: 'Lab' },
-  { title: 'Portfolio System', blurb: 'Design tokens, themes, and motion guidelines.', tag: 'System' },
-  { title: '3D-ish Cards', blurb: 'Layered depth and tilt on hover.', tag: 'Experiment' },
+  { title: 'Ambient Motion Landing', blurb: 'Hero gradients, scroll bound reveals, subtle parallax.', tag: 'Case Study', href: GH },
+  { title: 'Data Viz Microsite', blurb: 'Canvas interactions and narrative scrollytelling.', tag: 'Selected', href: GH },
+  { title: 'E-commerce UI Polish', blurb: 'Micro-interactions, a11y, and performance pass.', tag: 'Client', href: GH },
+  { title: 'Experimental Nav Patterns', blurb: 'Magnetic hover, inertia, and spring transitions.', tag: 'Lab', href: GH },
+  { title: 'Portfolio System', blurb: 'Design tokens, themes, and motion guidelines.', tag: 'System', href: GH },
+  { title: '3D-ish Cards', blurb: 'Layered depth and tilt on hover.', tag: 'Experiment', href: GH },
 ]
 
 function TiltCard({ p }: { p: Project }) {
-  const ref = useRef<HTMLDivElement | null>(null)
+  const ref = useRef<HTMLAnchorElement | null>(null)
 
   const onMove = (e: React.MouseEvent) => {
     const el = ref.current
@@ -33,11 +34,11 @@ function TiltCard({ p }: { p: Project }) {
   }
 
   return (
-    <article ref={ref} className="card" onMouseMove={onMove} onMouseLeave={onLeave}>
+    <a ref={ref} className="card" onMouseMove={onMove} onMouseLeave={onLeave} href={p.href || GH} target="_blank" rel="noreferrer">
       {/* <span className="badge">{p.tag}</span> */}
       <h3>{p.title}</h3>
       <p>{p.blurb}</p>
-    </article>
+    </a>
   )
 }
 

@@ -8,7 +8,7 @@ export default function Experience() {
     { company: 'Freelance', role: 'Developer/Designer', period: '2018 — 2020', bullets: ['Delivered small sites end‑to‑end', 'Consulted on UX polish + animations'] },
   ]
   return (
-    <section id="experience" className="section">
+    <section id="experience" className="section experience">
       <div className="container">
         <div className="experience-head">
           <span className="bar" aria-hidden />
@@ -17,7 +17,6 @@ export default function Experience() {
         <div className="timeline">
           {items.map((x, i) => (
             <div className="tl-item reveal" style={{ transitionDelay: `${80 + i * 80}ms` }} key={x.company}>
-              <div className="tl-dot" />
               <div className="tl-card">
                 <div className="tl-company">{x.company}</div>
                 <div className="tl-role">{x.role} · <span className="tl-period">{x.period}</span></div>

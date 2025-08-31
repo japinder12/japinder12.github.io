@@ -36,6 +36,24 @@ export default function Hero() {
     return () => io.disconnect()
   }, [])
 
+  useEffect(() => {
+    const glow = glowRef.current
+    if (!glow) return
+    const cards = Array.from(document.querySelectorAll('.projects-grid a.card'))
+    const onEnter = () => glow.classList.add('click')
+    const onLeave = () => glow.classList.remove('click')
+    cards.forEach((el) => {
+      el.addEventListener('mouseenter', onEnter)
+      el.addEventListener('mouseleave', onLeave)
+    })
+    return () => {
+      cards.forEach((el) => {
+        el.removeEventListener('mouseenter', onEnter)
+        el.removeEventListener('mouseleave', onLeave)
+      })
+    }
+  }, [])
+
   // Typewriter effect for the main headline (with caret)
   const fullTitle = 'Creative Developer crafting rich interactions'
   const [title, setTitle] = useState<string>('')
@@ -46,7 +64,7 @@ export default function Hero() {
       i += 1
       setTitle(fullTitle.slice(0, i))
       if (i >= fullTitle.length) clearInterval(interval)
-    }, 55)
+    }, 70)
     const caretBlink = setInterval(() => setShowCaret((v) => !v), 500)
     return () => { clearInterval(interval); clearInterval(caretBlink) }
   }, [])

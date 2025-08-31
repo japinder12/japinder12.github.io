@@ -4,7 +4,7 @@ export default function Nav() {
   return (
     <nav className="sticky">
       <div className="container bar">
-        <a href="#top" style={{ fontWeight: 600, letterSpacing: '-0.01em' }}>
+        <a href="#top" style={{ fontWeight: 600, letterSpacing: '-0.01em', fontSize: 18 }}>
           Japinder Singh Narula's <span className="brand-portfolio">Portfolio</span>
         </a>
         <div className="links" style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
