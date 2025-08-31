@@ -11,9 +11,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(() => {
+              try {
+                const stored = localStorage.getItem('theme');
+                const theme = stored || 'dark';
+                document.documentElement.setAttribute('data-theme', theme);
+              } catch {}
+            })();`,
+          }}
+        />
         {children}
       </body>
     </html>
   )
 }
-

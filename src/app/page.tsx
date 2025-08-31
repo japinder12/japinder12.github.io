@@ -1,7 +1,8 @@
 import Nav from '@/components/Nav'
 import Hero from '@/components/Hero'
-import WorkGrid from '@/components/WorkGrid'
-import About from '@/components/About'
+import ProjectsGrid from '@/components/ProjectsGrid'
+import Skills from '@/components/Skills'
+import Experience from '@/components/Experience'
 import Footer from '@/components/Footer'
 
 export default function Page() {
@@ -9,10 +10,10 @@ export default function Page() {
     <main>
       <Nav />
       <Hero />
-      <WorkGrid />
-      <About />
+      <ProjectsGrid />
+      <Skills />
+      <Experience />
       <Footer />
     </main>
   )
 }
-

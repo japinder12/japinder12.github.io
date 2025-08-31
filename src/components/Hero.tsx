@@ -59,12 +59,8 @@ export default function Hero() {
             <span className="tag" key={t}>{t}</span>
           ))}
         </div>
-        <div className="cta-row reveal" style={{ transitionDelay: '420ms' }}>
-          <a className="btn" href="#work"><span className="pulse" />See Work</a>
-          <a className="btn" href="#contact"><span className="pulse" />Get in Touch</a>
-        </div>
+        {/* CTA buttons intentionally removed per request */}
       </div>
     </section>
   )
 }
-
