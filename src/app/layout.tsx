@@ -3,7 +3,7 @@ import '@/styles/globals.css'
 
 export const metadata: Metadata = {
   title: 'Japinder Narula · Portfolio',
-  description: 'Creative developer portfolio — animations, interactions, and selected work.',
+  description: 'Creative developer portfolio — animations, interactions, and selected projects.',
   metadataBase: new URL('https://japinder12.github.io'),
 }
 

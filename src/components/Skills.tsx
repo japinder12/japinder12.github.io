@@ -1,4 +1,6 @@
-type Skill = { label: string; icon?: React.ReactNode }
+import type { ReactNode } from 'react'
+
+type Skill = { label: string; icon?: ReactNode }
 
 export default function Skills() {
   const items: Skill[] = [

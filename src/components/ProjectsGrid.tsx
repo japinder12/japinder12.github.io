@@ -43,13 +43,16 @@ function TiltCard({ p }: { p: Project }) {
 
 export default function ProjectsGrid() {
   return (
-    <section id="projects" className="work section">
+    <section id="projects" className="projects section">
       <div className="container">
         <div className="reveal" style={{ transitionDelay: '60ms' }}>
-          <h2 style={{ margin: 0, fontSize: '28px', letterSpacing: '-0.01em' }}>Projects</h2>
+          <div className="projects-head">
+            <span className="bar" aria-hidden />
+            <h2>Projects</h2>
+          </div>
           <p style={{ color: 'var(--muted)', marginTop: 8 }}>A few selected projects that capture my approach to motion and UX polish.</p>
         </div>
-        <div className="work-grid" style={{ marginTop: 18 }}>
+        <div className="projects-grid" style={{ marginTop: 18 }}>
           {projects.map((p) => <TiltCard key={p.title} p={p} />)}
         </div>
       </div>

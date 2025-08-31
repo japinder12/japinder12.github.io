@@ -1,37 +1,30 @@
-export default function Experience() {
-  const roles = [
-    {
-      company: 'Pickleball.com',
-      title: 'Software Engineer',
-      period: 'Jan 2024 – Present',
-      bullets: [
-        'Led frontend initiatives with React and Next.js.',
-        'Planned technical approaches, code reviews, and performance tuning.',
-      ],
-    },
-    {
-      company: 'Atlantbh',
-      title: 'Junior Software Engineer',
-      period: 'Jun 2022 – Jan 2024',
-      bullets: [
-        'Built full‑stack features across React, PostgreSQL, Docker.',
-        'Improved code quality via reviews and collaboration.',
-      ],
-    },
-  ]
+type Exp = { company: string; role: string; period: string; bullets: string[] }
 
+export default function Experience() {
+  const items: Exp[] = [
+    { company: 'Acme Co.', role: 'Frontend Engineer', period: '2024 — Present', bullets: ['Building delightful UIs with React + Next.js', 'Pushing performance + a11y improvements'] },
+    { company: 'Widget Labs', role: 'Software Engineer', period: '2022 — 2024', bullets: ['Shipped design system + theme modes', 'Led micro‑interaction patterns across app'] },
+    { company: 'Studio XYZ', role: 'Creative Developer', period: '2020 — 2022', bullets: ['Prototype motion concepts for landing pages', 'Canvas experiments + subtle parallax'] },
+    { company: 'Freelance', role: 'Developer/Designer', period: '2018 — 2020', bullets: ['Delivered small sites end‑to‑end', 'Consulted on UX polish + animations'] },
+  ]
   return (
     <section id="experience" className="section">
       <div className="container">
-        <h2 style={{ margin: 0, fontSize: '28px', letterSpacing: '-0.01em' }}>Experience</h2>
-        <div style={{ marginTop: 12 }}>
-          {roles.map((r) => (
-            <div key={r.company} style={{ marginBottom: 18 }} className="reveal">
-              <div style={{ fontWeight: 600 }}>{r.company}</div>
-              <div style={{ color: 'var(--muted)', fontSize: 14 }}>{r.title} · {r.period}</div>
-              <ul style={{ marginTop: 8 }}>
-                {r.bullets.map((b, i) => <li key={i} style={{ color: 'var(--muted)' }}>{b}</li>)}
-              </ul>
+        <div className="experience-head">
+          <span className="bar" aria-hidden />
+          <h2>Experience</h2>
+        </div>
+        <div className="timeline">
+          {items.map((x, i) => (
+            <div className="tl-item reveal" style={{ transitionDelay: `${80 + i * 80}ms` }} key={x.company}>
+              <div className="tl-dot" />
+              <div className="tl-card">
+                <div className="tl-company">{x.company}</div>
+                <div className="tl-role">{x.role} · <span className="tl-period">{x.period}</span></div>
+                <ul className="tl-list">
+                  {x.bullets.map((b, j) => <li key={j}>{b}</li>)}
+                </ul>
+              </div>
             </div>
           ))}
         </div>
@@ -39,4 +32,3 @@ export default function Experience() {
     </section>
   )
 }
-

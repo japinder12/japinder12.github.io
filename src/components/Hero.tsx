@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export default function Hero() {
   const glowRef = useRef<HTMLDivElement | null>(null)
@@ -36,6 +36,21 @@ export default function Hero() {
     return () => io.disconnect()
   }, [])
 
+  // Typewriter effect for the main headline (with caret)
+  const fullTitle = 'Creative Developer crafting rich interactions'
+  const [title, setTitle] = useState<string>('')
+  const [showCaret, setShowCaret] = useState(true)
+  useEffect(() => {
+    let i = 0
+    const interval = setInterval(() => {
+      i += 1
+      setTitle(fullTitle.slice(0, i))
+      if (i >= fullTitle.length) clearInterval(interval)
+    }, 55)
+    const caretBlink = setInterval(() => setShowCaret((v) => !v), 500)
+    return () => { clearInterval(interval); clearInterval(caretBlink) }
+  }, [])
+
   return (
     <section id="top" className="hero section">
       <div aria-hidden className="bg-stage">
@@ -47,8 +62,9 @@ export default function Hero() {
 
       <div className="container">
         <div className="reveal" style={{ transitionDelay: '120ms' }}>
-          <h1>
-            Creative Developer crafting rich interactions
+          <h1 className="typewriter" aria-label={fullTitle}>
+            {title}
+            <span aria-hidden className={`caret${showCaret ? ' on' : ''}`} />
           </h1>
         </div>
         <p className="sub reveal" style={{ transitionDelay: '220ms' }}>
