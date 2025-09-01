@@ -6,7 +6,7 @@ import {
   SiPython, SiGo, SiTypescript, SiJavascript, SiCplusplus, SiC, SiKotlin,
   SiReact, SiNextdotjs, SiTailwindcss, SiNodedotjs, SiFastapi, SiSpring, SiRemix,
   SiPytorch, SiTensorflow, SiOpencv, SiPostgresql, SiMongodb,
-  SiAmazonaws, SiGoogleappscript,
+  SiAmazonaws, SiGoogleappsscript,
 } from 'react-icons/si'
 
 type Skill = { label: string; icon?: IconType; cat?: 'web' | 'lang' | 'db' | 'cloud' | 'ml' }
