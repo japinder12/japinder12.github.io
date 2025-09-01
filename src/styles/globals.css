@@ -65,7 +65,10 @@ nav .links a:hover { color: var(--text); }
 /* Nav responsive */
 nav .brand { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 60vw; }
 .menu-btn { display: none; width: 40px; height: 36px; border-radius: 10px; border: 1px solid var(--panel-border); background: linear-gradient(180deg, var(--panel-bg-start), var(--panel-bg-end)); align-items: center; justify-content: center; gap: 3px; padding: 6px; }
-.menu-btn span { display: block; width: 18px; height: 2px; background: var(--text); border-radius: 2px; }
+.menu-btn span { display: block; width: 18px; height: 2px; background: var(--text); border-radius: 2px; transition: transform .2s ease, opacity .2s ease; }
+nav.menu-open .menu-btn span:nth-child(1) { transform: translateY(5px) rotate(45deg); }
+nav.menu-open .menu-btn span:nth-child(2) { opacity: 0; }
+nav.menu-open .menu-btn span:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
 .menu-panel { display: none; }
 @media (max-width: 720px) {
   nav .links { display: none !important; }
@@ -76,7 +79,7 @@ nav .brand { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max
 
 /* Hero */
 .hero { position: relative; padding: 140px 0 120px; overflow: hidden; }
-.hero h1 { font-size: clamp(40px, 6vw, 88px); line-height: 0.95; margin: 0 0 16px; letter-spacing: -0.02em; }
+.hero h1 { font-size: clamp(30px, 6vw, 70px); line-height: 0.95; margin: 0 0 16px; letter-spacing: -0.02em; }
 .hero .sub { color: var(--muted); font-size: clamp(16px, 2.2vw, 20px); max-width: 60ch; }
 /* Typewriter caret */
 .typewriter .caret { display: inline-block; width: 5px; height: 0.85em; margin-left: 10px; background: var(--text); vertical-align: baseline; transform: translateY(2px); border-radius: 3px; box-shadow: 0 0 6px rgba(34,211,238,0.28); }
@@ -96,15 +99,25 @@ nav .brand { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max
 .projects { background: radial-gradient(1200px 600px at 10% 10%, rgba(139,92,246,0.06), transparent), radial-gradient(800px 400px at 90% 10%, rgba(34,211,238,0.06), transparent); }
 .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; }
 .projects-grid a.card { text-decoration: none; color: inherit; }
-.skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; }
+.skills-grid { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
 
 /* Skills styling inspired by reference */
 .skills-sec .skills-head { display: flex; align-items: center; gap: 12px; }
 .skills-sec .skills-head .bar { width: 36px; height: 3px; border-radius: 99px; background: var(--accent-2); display: inline-block; }
 .skills-sec h2 { margin: 0; font-size: 28px; letter-spacing: -0.01em; }
 
-.skill-card { position: relative; background: linear-gradient(180deg, var(--panel-bg-start), var(--panel-bg-end)); border: 1px dashed var(--panel-border); border-radius: 12px; padding: 10px; aspect-ratio: 1 / 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
-.skill-card:hover { border-style: solid; transform: translateY(-2px); transition: transform .15s ease, border-color .2s ease, box-shadow .2s ease; border-color: rgba(34,211,238,0.4); box-shadow: 0 6px 26px rgba(34,211,238,0.08); }
+/* Skill chips (Option B) */
+.skill-chip { display: inline-flex; align-items: center; gap: 8px; padding: 10px 12px; border-radius: 999px; background: linear-gradient(180deg, var(--panel-bg-start), var(--panel-bg-end)); border: 1px solid var(--panel-border); transition: transform .15s ease, border-color .2s ease, box-shadow .2s ease, background .2s ease; }
+.skill-chip .icon { width: 20px; height: 20px; display: grid; place-items: center; color: var(--muted); }
+.skill-chip .text { font-size: 14px; font-weight: 600; color: var(--text); }
+.skill-chip:hover { transform: translateY(-1px); border-color: rgba(139,92,246,0.45); box-shadow: 0 8px 26px rgba(139,92,246,0.12); }
+
+/* Category accents: color icons by category */
+.skill-chip.web .icon { color: #8b5cf6; }
+.skill-chip.lang .icon { color: #60a5fa; }
+.skill-chip.db .icon { color: #22d3ee; }
+.skill-chip.cloud .icon { color: #f59e0b; }
+.skill-chip.ml .icon { color: #eab308; }
 .skill-icon { color: var(--accent-2); font-size: 22px; line-height: 1; transform: translateY(2px); }
 .skill-icon svg { width: 28px; height: 28px; color: var(--accent-2); }
 /* Brand colors for skills */

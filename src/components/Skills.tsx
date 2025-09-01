@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 
-type Skill = { label: string; icon?: ReactNode }
+type Skill = { label: string; icon?: ReactNode; cat?: 'web' | 'lang' | 'db' | 'cloud' | 'ml' }
 
 const Icons = {
   React: (
@@ -58,15 +58,16 @@ const Icons = {
 
 export default function Skills() {
   const items: Skill[] = [
-    { label: 'React.js', icon: Icons.React },
-    { label: 'Next.js', icon: Icons.Next },
-    { label: 'TypeScript', icon: Icons.TS },
-    { label: 'Tailwind', icon: Icons.Tailwind },
-    { label: 'Node.js', icon: Icons.Node },
-    { label: 'PostgreSQL', icon: Icons.DB },
-    { label: 'Java', icon: Icons.Java },
-    { label: 'AWS', icon: Icons.Cloud },
-    { label: 'Socket.io', icon: Icons.Lightning },
+    { label: 'React.js', icon: Icons.React, cat: 'web' },
+    { label: 'Next.js', icon: Icons.Next, cat: 'web' },
+    { label: 'TypeScript', icon: Icons.TS, cat: 'lang' },
+    { label: 'Tailwind', icon: Icons.Tailwind, cat: 'web' },
+    { label: 'Node.js', icon: Icons.Node, cat: 'web' },
+    { label: 'PostgreSQL', icon: Icons.DB, cat: 'db' },
+    { label: 'MongoDB', icon: Icons.DB, cat: 'db' },
+    { label: 'Java', icon: Icons.Java, cat: 'lang' },
+    { label: 'AWS', icon: Icons.Cloud, cat: 'cloud' },
+    { label: 'Socket.io', icon: Icons.Lightning, cat: 'web' },
   ]
   return (
     <section id="skills" className="section skills-sec">
@@ -77,19 +78,9 @@ export default function Skills() {
         </div>
         <div className="skills-grid" style={{ marginTop: 18 }}>
           {items.map((s) => (
-            <div key={s.label} className="skill-card">
-              <div className={`skill-icon ${
-                s.label.startsWith('React') ? 'react' :
-                s.label.startsWith('Next') ? 'next' :
-                s.label.startsWith('TypeScript') ? 'ts' :
-                s.label.startsWith('Tailwind') ? 'tailwind' :
-                s.label.startsWith('Node') ? 'node' :
-                s.label.startsWith('Postgre') ? 'db' :
-                s.label.startsWith('Java') ? 'java' :
-                s.label.startsWith('AWS') ? 'cloud' :
-                'lightning'
-              }`}>{s.icon}</div>
-              <div className="skill-label">{s.label}</div>
+            <div key={s.label} className={`skill-chip ${s.cat || ''}`}>
+              <span className="icon">{s.icon}</span>
+              <span className="text">{s.label}</span>
             </div>
           ))}
         </div>

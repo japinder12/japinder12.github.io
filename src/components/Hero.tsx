@@ -1,6 +1,9 @@
 "use client"
 
 import { useEffect, useRef, useState } from 'react'
+import { JetBrains_Mono } from 'next/font/google'
+
+const monoFont = JetBrains_Mono({ subsets: ['latin'], weight: ['400','500','600','700'] })
 
 export default function Hero() {
   const glowRef = useRef<HTMLDivElement | null>(null)
@@ -80,19 +83,20 @@ export default function Hero() {
 
       <div className="container">
         <div className="reveal" style={{ transitionDelay: '120ms' }}>
-          <h1 className="typewriter" aria-label={fullTitle}>
+          <h1 className={`${monoFont.className} typewriter`} aria-label={fullTitle}>
             {title}
             <span aria-hidden className={`caret${showCaret ? ' on' : ''}`} />
           </h1>
         </div>
-        <p className="sub reveal" style={{ transitionDelay: '220ms' }}>
-          I design and build delightful, performant web experiences — blending motion, polish, and crisp engineering.
-        </p>
+
         <div className="tags reveal" style={{ transitionDelay: '320ms' }}>
           {['WebGL-ish vibes', 'GSAP-free micro-interactions', 'TypeScript', 'Next.js', 'Design systems'].map((t) => (
             <span className="tag" key={t}>{t}</span>
           ))}
         </div>
+        <p className="sub reveal" style={{ transitionDelay: '220ms' }}>
+          I design and build delightful, performant web experiences — blending motion, polish, and crisp engineering.
+        </p>
         {/* CTA buttons intentionally removed per request */}
       </div>
     </section>
