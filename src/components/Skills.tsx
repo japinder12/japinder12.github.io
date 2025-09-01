@@ -1,8 +1,9 @@
 "use client"
 
 import type { IconType } from 'react-icons'
+import { FaJava } from 'react-icons/fa'
 import {
-  SiPython, SiJava, SiGo, SiTypescript, SiJavascript, SiCplusplus,
+  SiPython, SiGo, SiTypescript, SiJavascript, SiCplusplus, SiC, SiKotlin,
   SiReact, SiNextdotjs, SiTailwindcss, SiNodedotjs, SiFastapi, SiSpring, SiRemix,
   SiPytorch, SiTensorflow, SiOpencv, SiPostgresql, SiMongodb,
   SiAmazonaws
@@ -14,13 +15,13 @@ export default function Skills() {
   const items: Skill[] = [
     // Languages
     { label: 'Python', icon: SiPython, cat: 'lang' },
-    { label: 'Java', icon: SiJava, cat: 'lang' },
+    { label: 'Java', icon: FaJava as IconType, cat: 'lang' },
     { label: 'Go', icon: SiGo, cat: 'lang' },
     { label: 'TypeScript', icon: SiTypescript, cat: 'lang' },
     { label: 'JavaScript', icon: SiJavascript, cat: 'lang' },
     { label: 'C++', icon: SiCplusplus, cat: 'lang' },
-    { label: 'C', cat: 'lang' },
-    { label: 'Kotlin', cat: 'lang' },
+    { label: 'C', icon: SiC, cat: 'lang' },
+    { label: 'Kotlin', icon: SiKotlin, cat: 'lang' },
     // Web / Frameworks
     { label: 'React', icon: SiReact, cat: 'web' },
     { label: 'Next.js', icon: SiNextdotjs, cat: 'web' },
