@@ -58,7 +58,7 @@ export default function Hero() {
   }, [])
 
   // Typewriter effect for the main headline (with caret)
-  const fullTitle = 'Creative Developer crafting rich interactions'
+  const fullTitle = 'Hi, I\'m Japinder. Welcome to my portfolio!'
   const [title, setTitle] = useState<string>('')
   const [showCaret, setShowCaret] = useState(true)
   useEffect(() => {
@@ -95,7 +95,7 @@ export default function Hero() {
           ))}
         </div>
         <p className="sub reveal" style={{ transitionDelay: '220ms' }}>
-          Trying to build cool things :{")"}
+          Building reliable systems with clean APIs, fast UIs, and measurable outcomes
         </p>
         {/* CTA buttons intentionally removed per request */}
       </div>
