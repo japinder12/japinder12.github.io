@@ -58,7 +58,7 @@ export default function Hero() {
   }, [])
 
   // Typewriter effect for the main headline (with caret)
-  const fullTitle = 'Hi, I\'m Japinder. Welcome to my portfolio!'
+  const fullTitle = 'Shipping clean APIs and crisp UIs'
   const [title, setTitle] = useState<string>('')
   const [showCaret, setShowCaret] = useState(true)
   useEffect(() => {

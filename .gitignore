@@ -7,7 +7,6 @@ out
 .turbo
 dist
 build
-.gz
 
 # Caches
 /.vercel
