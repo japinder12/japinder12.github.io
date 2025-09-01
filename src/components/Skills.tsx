@@ -6,7 +6,7 @@ import {
   SiPython, SiGo, SiTypescript, SiJavascript, SiCplusplus, SiC, SiKotlin,
   SiReact, SiNextdotjs, SiTailwindcss, SiNodedotjs, SiFastapi, SiSpring, SiRemix,
   SiPytorch, SiTensorflow, SiOpencv, SiPostgresql, SiMongodb,
-  SiAmazonaws
+  SiAmazonaws, SiGoogleappscript,
 } from 'react-icons/si'
 
 type Skill = { label: string; icon?: IconType; cat?: 'web' | 'lang' | 'db' | 'cloud' | 'ml' }
@@ -40,7 +40,7 @@ export default function Skills() {
     { label: 'MongoDB', icon: SiMongodb, cat: 'db' },
     { label: 'SQL', cat: 'db' },
     { label: 'AWS', icon: SiAmazonaws, cat: 'cloud' },
-    { label: 'Google Apps Script', cat: 'cloud' },
+    { label: 'Google Apps Script', icon: SiGoogleappscript, cat: 'cloud' },
   ]
 
   return (
