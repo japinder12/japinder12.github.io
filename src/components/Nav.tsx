@@ -9,8 +9,8 @@ export default function Nav() {
   return (
     <nav className={`sticky ${open ? 'menu-open' : ''}`}>
       <div className="container bar">
-        <a href="#top" className="brand" onClick={close} style={{ fontWeight: 600, letterSpacing: '-0.01em', fontSize: 18 }}>
-          Japinder Singh Narula's <span className="brand-portfolio">Portfolio</span>
+        <a href="#top" className="brand" onClick={close} style={{ fontWeight: 600, letterSpacing: '-0.01em', fontSize: 16 }}>
+          Japinder's <span className="brand-portfolio">Portfolio</span>
         </a>
         <button className="menu-btn" aria-label="Toggle menu" onClick={() => setOpen(v => !v)}>
           <span />
