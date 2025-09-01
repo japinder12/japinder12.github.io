@@ -5,6 +5,15 @@ export const metadata: Metadata = {
   title: "Japinder's Portfolio",
   description: 'Software Engineer',
   metadataBase: new URL('https://japindernarula.com'),
+  icons: {
+    icon: [
+      { url: '/icon.svg?v=2' },
+      { url: '/icon.png?v=2' },
+      { url: '/favicon.svg?v=2' },
+    ],
+    shortcut: '/icon.svg?v=2',
+    apple: '/apple-icon.png?v=2',
+  },
   // openGraph: {
   //   title: "Japinder's Portfolio",
   //   description: 'Software Engineer',
