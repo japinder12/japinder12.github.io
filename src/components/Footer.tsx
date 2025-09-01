@@ -67,7 +67,7 @@ export default function Footer() {
         </form>
 
         <div className="contact-info">
-          <div className="lead">Let’s build something thoughtful</div>
+          <div className="lead">Contact me!</div>
           <a className="email" href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'email@yourdomain.com'}`}>{process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'email@yourdomain.com'}</a>
           <div className="socials">
             <a aria-label="GitHub" href={`${process.env.NEXT_PUBLIC_GITHUB_URL || 'https://github.com/japinder12'}`} target="_blank" rel="noreferrer" className="icon-btn" style={iconBtnStyle}>

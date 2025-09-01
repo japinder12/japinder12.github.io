@@ -6,7 +6,7 @@ type Project = { title: string; blurb: string; tag: string; href?: string }
 
 const GH = (process.env.NEXT_PUBLIC_GITHUB_URL as string) || 'https://github.com/japinder12'
 const projects: Project[] = [
-  { title: 'Ambient Motion Landing', blurb: 'Hero gradients, scroll bound reveals, subtle parallax.', tag: 'Case Study', href: GH },
+  { title: 'Ambient Motion Landing', blurb: 'Hero gradients, scroll bound reveals, subtle parallax.', tag: 'Case Study', href: 'https://google.com' },
   { title: 'Data Viz Microsite', blurb: 'Canvas interactions and narrative scrollytelling.', tag: 'Selected', href: GH },
   { title: 'E-commerce UI Polish', blurb: 'Micro-interactions, a11y, and performance pass.', tag: 'Client', href: GH },
   { title: 'Experimental Nav Patterns', blurb: 'Magnetic hover, inertia, and spring transitions.', tag: 'Lab', href: GH },
