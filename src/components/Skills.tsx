@@ -2,6 +2,7 @@
 
 import type { IconType } from 'react-icons'
 import { FaJava } from 'react-icons/fa'
+import { TbSql } from 'react-icons/tb'
 import {
   SiPython, SiGo, SiTypescript, SiJavascript, SiCplusplus, SiC, SiKotlin,
   SiReact, SiNextdotjs, SiTailwindcss, SiNodedotjs, SiFastapi, SiSpring, SiRemix,
@@ -38,7 +39,7 @@ export default function Skills() {
     // Data / Cloud
     { label: 'PostgreSQL', icon: SiPostgresql, cat: 'db' },
     { label: 'MongoDB', icon: SiMongodb, cat: 'db' },
-    { label: 'SQL', cat: 'db' },
+    { label: 'SQL', icon: TbSql as unknown as IconType, cat: 'db' },
     { label: 'AWS', icon: SiAmazonaws, cat: 'cloud' },
     { label: 'Google Apps Script', icon: SiGoogleappsscript, cat: 'cloud' },
   ]
