@@ -21,7 +21,10 @@ export default function Footer() {
         body: JSON.stringify({ name, email, message })
       })
       const data = await res.json()
-      if (!res.ok || !data.ok) throw new Error(data?.error || 'Failed to send')
+      if (!res.ok || !data.ok) {
+        const msg = data?.error ? `${data.error}${data?.details ? `: ${data.details}` : ''}` : 'Failed to send'
+        throw new Error(msg)
+      }
       setStatus('sent')
       e.currentTarget.reset()
     } catch (err: any) {
