@@ -53,7 +53,6 @@ html { scroll-behavior: smooth; }
 /* Glow cursor */
 .cursor-glow { position: fixed; width: var(--cursor-size, 250px); height: var(--cursor-size, 250px); border-radius: 50%; pointer-events: none; background: radial-gradient(closest-side, rgba(139,92,246,0.18), rgba(34,211,238,0)); transform: translate(-50%, -50%); mix-blend-mode: screen; z-index: 2; transition: opacity 300ms ease; }
 [data-theme="light"] .cursor-glow { background: radial-gradient(closest-side, rgba(139,92,246,0.28), rgba(34,211,238,0)); mix-blend-mode: multiply; }
-.cursor-glow.click::after { content: 'Click Me'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, calc(-50% + 16px)); padding: 6px 10px; font-size: 12px; font-weight: 700; color: var(--bg); background: var(--text); border-radius: 999px; box-shadow: 0 4px 14px rgba(0,0,0,0.25); pointer-events: none; mix-blend-mode: normal; }
 
 /* Nav */
 nav.sticky { position: sticky; top: 0; z-index: 10; backdrop-filter: blur(8px); background: var(--nav-bg); border-bottom: 1px solid var(--panel-border); }
@@ -104,7 +103,7 @@ nav.menu-open .menu-btn span:nth-child(3) { transform: translateY(-8px) rotate(-
 /* Work grid */
 .projects { background: radial-gradient(1200px 600px at 10% 10%, rgba(139,92,246,0.06), transparent), radial-gradient(800px 400px at 90% 10%, rgba(34,211,238,0.06), transparent); }
 .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; }
-.projects-grid a.card { text-decoration: none; color: inherit; }
+.projects-grid .card { text-decoration: none; color: inherit; }
 .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
 
 /* Skills styling inspired by reference */
@@ -163,6 +162,9 @@ nav.menu-open .menu-btn span:nth-child(3) { transform: translateY(-8px) rotate(-
 .card:hover { border-color: rgba(139,92,246,0.5); box-shadow: 0 10px 40px rgba(139,92,246,0.12); }
 .card h3 { margin: 0 0 8px; font-size: 18px; }
 .card p { margin: 0; color: var(--muted); font-size: 14px; }
+/* External link button in cards */
+.card .ext-link { position: absolute; top: 8px; right: 8px; width: 24px; height: 24px; display: inline-grid; place-items: center; color: var(--text); text-decoration: none; opacity: 0.8; transition: transform .15s ease, opacity .15s ease; }
+.card .ext-link:hover { transform: translateY(-1px) scale(1.05); opacity: 1; }
 .badge { position: absolute; top: 12px; right: 12px; font-size: 11px; color: #0b0b0c; background: #e5e7eb; border-radius: 999px; padding: 4px 8px; }
 
 /* About */

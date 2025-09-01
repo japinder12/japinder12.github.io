@@ -6,14 +6,14 @@ type Project = { title: string; blurb: string; tag: string; href?: string }
 
 const GH = (process.env.NEXT_PUBLIC_GITHUB_URL as string) || 'https://github.com/japinder12'
 const projects: Project[] = [
-  { title: 'k‑NN Geolocation (CLIP)', blurb: 'Predict image geolocations with CLIP embeddings + k‑NN; lowest MDE via tuned k.', tag: 'ML · PyTorch', href: 'google.com' },
-  { title: 'LSTM Classical Music Generator', blurb: 'End‑to‑end MIDI pipeline with TensorFlow/Keras + music21; sequence model for composition.', tag: 'ML · TensorFlow', href: GH },
+  { title: 'k‑NN Geolocation (CLIP)', blurb: 'Predict image geolocations with CLIP embeddings + k‑NN; lowest MDE via tuned k.', tag: 'ML · PyTorch', href: 'https://www.google.com' },
+  { title: 'LSTM Classical Music Generator', blurb: 'End‑to‑end MIDI pipeline with TensorFlow/Keras + music21; sequence model for composition.', tag: 'ML · TensorFlow', href: GH+'/resumes' },
   { title: 'Encrypted File Sharing', blurb: 'Secure sharing in Go using RSA for auth and storage; spec‑driven design.', tag: 'Go · Security', href: GH },
   { title: 'CSO Scheduler', blurb: 'Automated data collection and shift assignment in Google Apps Script with custom matching.', tag: 'Apps Script', href: GH},
 ]
 
 function TiltCard({ p }: { p: Project }) {
-  const ref = useRef<HTMLAnchorElement | null>(null)
+  const ref = useRef<HTMLDivElement | null>(null)
 
   const onMove = (e: React.MouseEvent) => {
     const el = ref.current
@@ -32,11 +32,16 @@ function TiltCard({ p }: { p: Project }) {
   }
 
   return (
-    <a ref={ref} className="card" onMouseMove={onMove} onMouseLeave={onLeave} href={p.href || GH} target="_blank" rel="noreferrer">
-      {/* <span className="badge">{p.tag}</span> */}
+    <div ref={ref} className="card" onMouseMove={onMove} onMouseLeave={onLeave}>
+      <a className="ext-link" aria-label={`Open ${p.title}`} href={p.href || GH} target="_blank" rel="noreferrer">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+          <path d="M14 5h5v5M9 15l10-10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
+          <path d="M20 14v5a1 1 0 0 1-1 1h-5M10 4H5a1 1 0 0 0-1 1v5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
+        </svg>
+      </a>
       <h3>{p.title}</h3>
       <p>{p.blurb}</p>
-    </a>
+    </div>
   )
 }
 
