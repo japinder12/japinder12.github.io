@@ -40,7 +40,7 @@ export default function Skills() {
     { label: 'MongoDB', icon: SiMongodb, cat: 'db' },
     { label: 'SQL', cat: 'db' },
     { label: 'AWS', icon: SiAmazonaws, cat: 'cloud' },
-    { label: 'Google Apps Script', icon: SiGoogleappscript, cat: 'cloud' },
+    { label: 'Google Apps Script', icon: SiGoogleappsscript, cat: 'cloud' },
   ]
 
   return (
