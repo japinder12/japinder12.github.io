@@ -90,12 +90,12 @@ export default function Hero() {
         </div>
 
         <div className="tags reveal" style={{ transitionDelay: '320ms' }}>
-          {['WebGL-ish vibes', 'GSAP-free micro-interactions', 'TypeScript', 'Next.js', 'Design systems'].map((t) => (
+          {['Software Engineer', 'Fullstack Developer', 'Backend Engineer', 'Trying to build cool things'].map((t) => (
             <span className="tag" key={t}>{t}</span>
           ))}
         </div>
         <p className="sub reveal" style={{ transitionDelay: '220ms' }}>
-          I design and build delightful, performant web experiences — blending motion, polish, and crisp engineering.
+          Trying to build cool things :{")"}
         </p>
         {/* CTA buttons intentionally removed per request */}
       </div>
