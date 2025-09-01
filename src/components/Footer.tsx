@@ -7,7 +7,8 @@ export default function Footer() {
   const [error, setError] = React.useState('')
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault()
-    const fd = new FormData(e.currentTarget)
+    const form = e.currentTarget // capture before awaits to avoid React event nullification
+    const fd = new FormData(form)
     const name = (fd.get('name') as string || '').trim()
     const email = (fd.get('email') as string || '').trim()
     const message = (fd.get('message') as string || '').trim()
@@ -26,7 +27,7 @@ export default function Footer() {
         throw new Error(msg)
       }
       setStatus('sent')
-      e.currentTarget.reset()
+      form.reset()
     } catch (err: any) {
       setStatus('error')
       setError(err?.message || 'Something went wrong')

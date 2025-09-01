@@ -48,7 +48,8 @@ export default function Experience() {
             <div className="tl-item reveal" style={{ transitionDelay: `${80 + i * 80}ms` }} key={x.company}>
               <div className="tl-card">
                 <div className="tl-company">{x.company}</div>
-                <div className="tl-role">{x.role} · <span className="tl-period">{x.period}</span></div>
+                <div className="tl-role">{x.role}</div>
+                <div className="tl-meta">{x.period}</div>
                 <ul className="tl-list">
                   {x.bullets.map((b, j) => <li key={j}>{b}</li>)}
                 </ul>
