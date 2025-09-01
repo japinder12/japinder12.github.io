@@ -78,7 +78,8 @@ nav.menu-open .menu-btn span:nth-child(3) { transform: translateY(-5px) rotate(-
 }
 
 /* Hero */
-.hero { position: relative; padding: 140px 0 120px; overflow: hidden; }
+.hero { position: relative; padding: 110px 0 90px; overflow: hidden; }
+@media (max-width: 720px) { .hero { padding: 84px 0 64px; } }
 .hero h1 { font-size: clamp(30px, 6vw, 70px); line-height: 0.95; margin: 0 0 16px; letter-spacing: -0.02em; }
 .hero .sub { color: var(--muted); font-size: clamp(16px, 2.2vw, 20px); max-width: 60ch; }
 /* Typewriter caret */
@@ -109,6 +110,7 @@ nav.menu-open .menu-btn span:nth-child(3) { transform: translateY(-5px) rotate(-
 /* Skill chips (Option B) */
 .skill-chip { display: inline-flex; align-items: center; gap: 8px; padding: 10px 12px; border-radius: 999px; background: linear-gradient(180deg, var(--panel-bg-start), var(--panel-bg-end)); border: 1px solid var(--panel-border); transition: transform .15s ease, border-color .2s ease, box-shadow .2s ease, background .2s ease; }
 .skill-chip .icon { width: 20px; height: 20px; display: grid; place-items: center; color: var(--muted); }
+.skill-chip .icon .ic-letter { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 6px; background: rgba(255,255,255,0.06); color: var(--text); font-size: 11px; font-weight: 700; }
 .skill-chip .text { font-size: 14px; font-weight: 600; color: var(--text); }
 .skill-chip:hover { transform: translateY(-1px); border-color: rgba(139,92,246,0.45); box-shadow: 0 8px 26px rgba(139,92,246,0.12); }
 

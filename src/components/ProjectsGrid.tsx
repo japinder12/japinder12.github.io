@@ -6,12 +6,10 @@ type Project = { title: string; blurb: string; tag: string; href?: string }
 
 const GH = (process.env.NEXT_PUBLIC_GITHUB_URL as string) || 'https://github.com/japinder12'
 const projects: Project[] = [
-  { title: 'Ambient Motion Landing', blurb: 'Hero gradients, scroll bound reveals, subtle parallax.', tag: 'Case Study', href: 'https://google.com' },
-  { title: 'Data Viz Microsite', blurb: 'Canvas interactions and narrative scrollytelling.', tag: 'Selected', href: GH },
-  { title: 'E-commerce UI Polish', blurb: 'Micro-interactions, a11y, and performance pass.', tag: 'Client', href: GH },
-  { title: 'Experimental Nav Patterns', blurb: 'Magnetic hover, inertia, and spring transitions.', tag: 'Lab', href: GH },
-  { title: 'Portfolio System', blurb: 'Design tokens, themes, and motion guidelines.', tag: 'System', href: GH },
-  { title: '3D-ish Cards', blurb: 'Layered depth and tilt on hover.', tag: 'Experiment', href: GH },
+  { title: 'k‑NN Geolocation (CLIP)', blurb: 'Predict image geolocations with CLIP embeddings + k‑NN; lowest MDE via tuned k.', tag: 'ML · PyTorch', href: 'google.com' },
+  { title: 'LSTM Classical Music Generator', blurb: 'End‑to‑end MIDI pipeline with TensorFlow/Keras + music21; sequence model for composition.', tag: 'ML · TensorFlow', href: GH },
+  { title: 'Encrypted File Sharing', blurb: 'Secure sharing in Go using RSA for auth and storage; spec‑driven design.', tag: 'Go · Security', href: GH },
+  { title: 'CSO Scheduler', blurb: 'Automated data collection and shift assignment in Google Apps Script with custom matching.', tag: 'Apps Script', href: GH},
 ]
 
 function TiltCard({ p }: { p: Project }) {
@@ -51,7 +49,7 @@ export default function ProjectsGrid() {
             <span className="bar" aria-hidden />
             <h2>Projects</h2>
           </div>
-          <p style={{ color: 'var(--muted)', marginTop: 8 }}>A few selected projects that capture my approach to motion and UX polish.</p>
+          <p style={{ color: 'var(--muted)', marginTop: 8 }}>Selected work across ML and full‑stack — from CLIP‑based geolocation to secure systems and workforce automation.</p>
         </div>
         <div className="projects-grid" style={{ marginTop: 18 }}>
           {projects.map((p) => <TiltCard key={p.title} p={p} />)}

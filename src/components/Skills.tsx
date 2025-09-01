@@ -58,16 +58,34 @@ const Icons = {
 
 export default function Skills() {
   const items: Skill[] = [
-    { label: 'React.js', icon: Icons.React, cat: 'web' },
-    { label: 'Next.js', icon: Icons.Next, cat: 'web' },
+    // Languages
+    { label: 'Python', cat: 'lang' },
+    { label: 'Java', icon: Icons.Java, cat: 'lang' },
+    { label: 'Go', cat: 'lang' },
     { label: 'TypeScript', icon: Icons.TS, cat: 'lang' },
-    { label: 'Tailwind', icon: Icons.Tailwind, cat: 'web' },
+    { label: 'JavaScript', cat: 'lang' },
+    { label: 'C++', cat: 'lang' },
+    { label: 'C', cat: 'lang' },
+    { label: 'Kotlin', cat: 'lang' },
+    // Web / Frameworks
+    { label: 'React', icon: Icons.React, cat: 'web' },
+    { label: 'Next.js', icon: Icons.Next, cat: 'web' },
+    { label: 'Tailwind CSS', icon: Icons.Tailwind, cat: 'web' },
     { label: 'Node.js', icon: Icons.Node, cat: 'web' },
+    { label: 'FastAPI', cat: 'web' },
+    { label: 'Spring Boot', cat: 'web' },
+    { label: 'Remix', cat: 'web' },
+    // ML / DS
+    { label: 'PyTorch', cat: 'ml' },
+    { label: 'TensorFlow / Keras', cat: 'ml' },
+    { label: 'OpenCV', cat: 'ml' },
+    { label: 'scikit‑learn', cat: 'ml' },
+    // Data / Cloud
     { label: 'PostgreSQL', icon: Icons.DB, cat: 'db' },
     { label: 'MongoDB', icon: Icons.DB, cat: 'db' },
-    { label: 'Java', icon: Icons.Java, cat: 'lang' },
+    { label: 'SQL', cat: 'db' },
     { label: 'AWS', icon: Icons.Cloud, cat: 'cloud' },
-    { label: 'Socket.io', icon: Icons.Lightning, cat: 'web' },
+    { label: 'Google Apps Script', cat: 'cloud' },
   ]
   return (
     <section id="skills" className="section skills-sec">
@@ -77,12 +95,21 @@ export default function Skills() {
           <h2>Skills</h2>
         </div>
         <div className="skills-grid" style={{ marginTop: 18 }}>
-          {items.map((s) => (
-            <div key={s.label} className={`skill-chip ${s.cat || ''}`}>
-              <span className="icon">{s.icon}</span>
-              <span className="text">{s.label}</span>
-            </div>
-          ))}
+          {items.map((s) => {
+            const initials = s.label
+              .split(/[^A-Za-z0-9]+/)
+              .filter(Boolean)
+              .map((w) => w[0])
+              .slice(0, 2)
+              .join('')
+              .toUpperCase()
+            return (
+              <div key={s.label} className={`skill-chip ${s.cat || ''}`}>
+                <span className="icon">{s.icon || <span className="ic-letter">{initials}</span>}</span>
+                <span className="text">{s.label}</span>
+              </div>
+            )
+          })}
         </div>
       </div>
     </section>
