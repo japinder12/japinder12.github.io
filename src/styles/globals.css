@@ -188,8 +188,8 @@ footer { border-top: 1px solid var(--panel-border); padding: 28px 0 88px; color:
   .tl-item { padding-left: 0; }
   .tl-item:nth-child(odd) { grid-column: 1; padding-right: 48px; }
   .tl-item:nth-child(even) { grid-column: 2; padding-left: 48px; }
-  .tl-item:nth-child(odd) .tl-card::before { left: auto; right: -46px; width: 46px; height: 3px; background: linear-gradient(270deg, rgba(139,92,246,0.7), transparent); }
-  .tl-item:nth-child(even) .tl-card::before { left: -46px; right: auto; width: 46px; height: 3px; background: linear-gradient(90deg, rgba(139,92,246,0.7), transparent); }
+  .tl-item:nth-child(odd) .tl-card::before { left: auto; right: -46px; width: 46px; height: 3px; background: linear-gradient(270deg, rgba(245,158,11,0.5), transparent); }
+  .tl-item:nth-child(even) .tl-card::before { left: -46px; right: auto; width: 46px; height: 3px; background: linear-gradient(90deg, rgba(245,158,11,0.5), transparent); }
 }
 .tl-card:hover { transform: translateY(-2px); border-color: rgba(245,158,11,0.5); box-shadow: 0 10px 40px rgba(245,158,11,0.18); }
 .tl-title { height: 16px; width: 50%; border-radius: 6px; background: rgba(255,255,255,0.08); }
