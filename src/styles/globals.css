@@ -230,4 +230,4 @@ footer { border-top: 1px solid var(--panel-border); padding: 28px 0 88px; color:
 .tl-list li { color: var(--muted); margin: 8px 0; font-size: 15px; line-height: 1.6; }
 
 /* Brand gradient word in nav */
-.brand-portfolio { background: linear-gradient(90deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.brand-portfolio { background: linear-gradient(90deg, var(--accent-2), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }

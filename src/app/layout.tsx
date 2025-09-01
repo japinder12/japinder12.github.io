@@ -2,9 +2,21 @@ import type { Metadata } from 'next'
 import '@/styles/globals.css'
 
 export const metadata: Metadata = {
-  title: 'Japinder Narula · Portfolio',
-  description: 'Creative developer portfolio — animations, interactions, and selected projects.',
-  metadataBase: new URL('https://japinder12.github.io'),
+  title: "Japinder's Portfolio",
+  description: 'Software Engineer',
+  metadataBase: new URL('https://japindernarula.com'),
+  openGraph: {
+    title: "Japinder's Portfolio",
+    description: 'Software Engineer',
+    url: 'https://japindernarula.com',
+    siteName: 'japindernarula.com',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Japinder's Portfolio",
+    description: 'Software Engineer',
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
