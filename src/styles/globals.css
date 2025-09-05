@@ -17,10 +17,10 @@ body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI
 }
 
 [data-theme="light"] {
-  --bg: #f7f7f9;
+  --bg: #eceff3;
   --text: #0b0b0c;
   --muted: #5f6368;
-  --card: #ffffff;
+  --card: #f7f8fa;
   --panel-border: rgba(0,0,0,0.08);
   --panel-bg-start: rgba(0,0,0,0.04);
   --panel-bg-end: rgba(0,0,0,0.01);
@@ -175,15 +175,15 @@ nav.menu-open .menu-btn span:nth-child(3) { transform: translateY(-8px) rotate(-
 .picon { width: 22px; height: 22px; flex: 0 0 22px; display: inline-flex; align-items: center; justify-content: center; font-size: 18px; line-height: 1; transform: translateY(-1px); filter: saturate(1.2); position: relative; }
 .picon::after { content: ""; position: absolute; z-index: -2; width: 40px; height: 40px; border-radius: 999px; 
   background: radial-gradient(60% 60% at 35% 35%, color-mix(in oklab, var(--c1) 75%, white 0%), transparent 70%), radial-gradient(60% 60% at 70% 70%, color-mix(in oklab, var(--c2) 75%, white 0%), transparent 70%);
-  opacity: 0.65; filter: blur(10px);
+  opacity: 0.42; filter: blur(10px);
   transition: transform .25s ease, opacity .25s ease, filter .25s ease; 
 }
 .picon::before { content: ""; position: absolute; z-index: -1; width: 34px; height: 34px; border-radius: 999px;
   background: radial-gradient(closest-side, transparent calc(100% - 4px), color-mix(in oklab, var(--c1) 70%, white 10%) 100%);
-  opacity: 0.75; filter: blur(0.2px); transition: transform .25s ease, opacity .25s ease;
+  opacity: 0.52; filter: blur(0.2px); transition: transform .25s ease, opacity .25s ease;
 }
-.card:hover .picon::after { opacity: 0.88; filter: blur(12px); transform: scale(1.08); }
-.card:hover .picon::before { transform: scale(1.05); opacity: 0.9; }
+.card:hover .picon::after { opacity: 0.62; filter: blur(12px); transform: scale(1.08); }
+.card:hover .picon::before { transform: scale(1.05); opacity: 0.72; }
 
 /* Inner emoji wrapper and floating notes */
 .picon .emoji { position: relative; z-index: 1; }
