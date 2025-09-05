@@ -39,8 +39,6 @@ export default function Hero() {
     return () => io.disconnect()
   }, [])
 
-  // Removed "Click Me" overlay behavior tied to project cards
-
   // Typewriter effect for the main headline (with caret)
   const fullTitle = 'Shipping clean APIs and crisp UIs'
   const [title, setTitle] = useState<string>('')
