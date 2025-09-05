@@ -10,7 +10,7 @@ const projects: Project[] = [
   { title: 'LSTM Classical Music Generator', blurb: 'Symbolic‑music LSTM that generates multi‑bar classical‑style phrases; end‑to‑end MIDI pipeline from parsing → training → synthesis.', tag: 'ML · TensorFlow', href: GH+'/resumes', icon: '🎼', effect: 'music' },
   { title: 'Encrypted File Sharing', blurb: 'RSA‑based file sharing with explicit trust boundaries — typed, spec‑driven design for auth, sharing, and storage.', tag: 'Go · Security', href: GH, icon: '🔐', effect: 'filefly' },
   { title: 'CSO Scheduler', blurb: 'Constraint‑aware matching automates data collection and shift assignments, improving scheduling accuracy and reducing manual overhead.', tag: 'Apps Script', href: GH, icon: '🗓️', effect: 'clockfloat' },
-  { title: 'Toronto Safety', blurb: 'Leaflet + Next.js dashboard to explore Toronto Police Service MCI near any address; postal‑code search, time and radius filters, and colour legend.', tag: 'Next.js · Leaflet', href: 'https://github.com/japinder12/toronto-safety', icon: '🗺️', effect: 'pintrip' },
+  { title: 'Toronto Safety', blurb: 'Leaflet + Next.js dashboard to explore Toronto Police Service MCI near any address — postal‑code search, time and radius filters, and colour legend.', tag: 'Next.js · Leaflet', href: 'https://github.com/japinder12/toronto-safety', icon: '🗺️', effect: 'pintrip' },
 ]
 
 function TiltCard({ p }: { p: Project }) {
