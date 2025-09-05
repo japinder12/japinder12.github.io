@@ -10,6 +10,7 @@ const projects: Project[] = [
   { title: 'LSTM Classical Music Generator', blurb: 'End‑to‑end MIDI pipeline with TensorFlow/Keras + music21; sequence model for composition.', tag: 'ML · TensorFlow', href: GH+'/resumes' },
   { title: 'Encrypted File Sharing', blurb: 'Secure sharing in Go using RSA for auth and storage; spec‑driven design.', tag: 'Go · Security', href: GH },
   { title: 'CSO Scheduler', blurb: 'Automated data collection and shift assignment in Google Apps Script with custom matching.', tag: 'Apps Script', href: GH},
+  { title: 'Toronto Safety', blurb: 'Neighbourhood Safety Dashboard: explore recent Toronto Police Service Major Crime Indicators (MCI) near any address.', tag: 'Next.js · Leaflet', href: 'https://github.com/japinder12/toronto-safety' },
 ]
 
 function TiltCard({ p }: { p: Project }) {
