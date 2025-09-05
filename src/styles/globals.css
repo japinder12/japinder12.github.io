@@ -265,6 +265,18 @@ nav.menu-open .menu-btn span:nth-child(3) { transform: translateY(-8px) rotate(-
 .picon.botsim .node.b { --tx: -2px; --ty: -2px; animation: node-pulse 1.8s ease-in-out infinite .2s; }
 .picon.botsim .node.c { --tx: 7px; --ty: -7px; animation: node-pulse 1.8s ease-in-out infinite .4s; }
 
+/* Bot on loop, heading and scan */
+@keyframes loop-spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
+@keyframes bot-pulse { 0% { transform: translate(-50%, -50%) scale(0.95); } 50% { transform: translate(-50%, -50%) scale(1); } 100% { transform: translate(-50%, -50%) scale(0.95); } }
+.picon.planner .bot { position: absolute; left: 50%; top: 50%; width: 6px; height: 6px; border-radius: 999px; background: color-mix(in oklab, var(--c2) 82%, white 8%); box-shadow: 0 0 8px color-mix(in oklab, var(--c2) 55%, black 45%); z-index: 2; animation: bot-pulse 1.8s ease-in-out infinite; }
+.picon.planner .heading { position: absolute; left: 50%; top: 50%; width: 0; height: 0; border-left: 5px solid color-mix(in oklab, var(--c1) 88%, white 8%); border-top: 3px solid transparent; border-bottom: 3px solid transparent; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.45)); transform: translate(-50%, -50%); animation: loop-spin 1.6s linear infinite; z-index: 2; }
+.picon.planner .loop { position: absolute; left: 50%; top: 50%; width: 24px; height: 24px; border-radius: 999px; transform: translate(-50%, -50%); 
+  background: conic-gradient(from 0deg, color-mix(in oklab, var(--c2) 85%, transparent) 0 28%, transparent 28% 100%);
+  border: 1px solid color-mix(in oklab, var(--c1) 30%, transparent);
+  opacity: 0.75; filter: saturate(1.1) drop-shadow(0 0 6px color-mix(in oklab, var(--c2) 45%, black 55%));
+  animation: loop-spin 1.6s linear infinite;
+}
+
 /* External link button in cards */
 .card .ext-link { position: absolute; top: 8px; right: 8px; width: 24px; height: 24px; display: inline-grid; place-items: center; color: var(--text); text-decoration: none; opacity: 0.8; transition: transform .15s ease, opacity .15s ease; }
 .card .ext-link:hover { transform: translateY(-1px) scale(1.05); opacity: 1; }
