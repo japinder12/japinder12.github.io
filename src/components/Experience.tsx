@@ -7,16 +7,8 @@ export default function Experience() {
       role: 'Software Engineer',
       period: 'May 2024 – Aug 2024 · Mountain View, CA',
       bullets: [
-        'Designed Spring Boot REST APIs to improve data capture accuracy and backend efficiency, reducing customer support calls.',
-        'Collaborated with Compliance SDEs and PMs; integrated new APIs with frontend, refined DB schemas for reliable, user‑facing flows.',
-      ],
-    },
-    {
-      company: 'UC Berkeley · EECS',
-      role: 'Data Structures Course Staff',
-      period: 'Jan 2023 – May 2023 · Berkeley, CA',
-      bullets: [
-        'Guided students through lab assignments and core concepts, improving grasp of data structures and problem‑solving.',
+        'Architected and deployed Spring Boot REST API endpoints, improving data accuracy and backend efficiency, and reducing customer support calls by over 15%.',
+        'Collaborated with cross‑functional teams to integrate APIs into customer‑facing UI, refining database schemas and enhancing data reliability across thousands of transactions daily.',
       ],
     },
     {
@@ -24,7 +16,16 @@ export default function Experience() {
       role: 'Software Engineer',
       period: 'Jun 2022 – Aug 2022 · Remote',
       bullets: [
-        'Implemented Merkle trees in Go and Rust; built scripts to support secure backend workflows.',
+        'Developed Merkle tree data structures in Go and Rust with MongoDB integration, enhancing backend security and integrity verification for distributed systems.',
+        'Automated operational workflows with secure scripts, reducing manual maintenance effort by ~30%.',
+      ],
+    },
+    {
+      company: 'UC Berkeley - EECS',
+      role: 'Data Structures Course Staff',
+      period: 'Jan 2023 – May 2023 · Berkeley, CA',
+      bullets: [
+        'Supported 50+ students mastering core data structures and algorithms via 1:1 guidance and debugging, improving lab completion rates by ~25%.',
       ],
     },
     {
@@ -32,7 +33,7 @@ export default function Experience() {
       role: 'Community Service Officer',
       period: 'Nov 2022 – Jun 2024 · Berkeley, CA',
       bullets: [
-        'Redesigned shift automation in Google Apps Script, cutting scheduling time ~30% for 80+ staff.',
+        'Engineered shift automation system in Apps Script, reducing scheduling time by ~30% and improving efficiency for 80+ department staff.',
       ],
     },
   ]
