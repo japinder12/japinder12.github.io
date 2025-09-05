@@ -15,16 +15,37 @@ export default function Hero() {
     const onMove = (e: MouseEvent) => {
       glow.style.left = e.clientX + 'px'
       glow.style.top = e.clientY + 'px'
+      // Ensure it shows whenever the pointer is inside and moving
+      glow.style.opacity = '1'
     }
     const onEnter = () => { glow.style.opacity = '1' }
     const onLeave = () => { glow.style.opacity = '0' }
+    // Hide initially until the pointer enters the window
+    glow.style.opacity = '0'
+
+    // Extra guards to hide when leaving the window or tab
+    const onBlur = () => { glow.style.opacity = '0' }
+    const onDocOut = (e: MouseEvent) => { if (!e.relatedTarget) glow.style.opacity = '0' }
+    const onVis = () => { if (document.hidden) glow.style.opacity = '0' }
+
     window.addEventListener('mousemove', onMove)
     window.addEventListener('mouseenter', onEnter)
     window.addEventListener('mouseleave', onLeave)
+    window.addEventListener('blur', onBlur)
+    // Listen at document level too (some browsers fire on doc/body, not window)
+    document.addEventListener('mouseleave', onLeave)
+    document.addEventListener('pointerleave', onLeave)
+    // Rely on document-level leave, not granular pointerout/mouseout capture
+    document.addEventListener('visibilitychange', onVis)
     return () => {
       window.removeEventListener('mousemove', onMove)
       window.removeEventListener('mouseenter', onEnter)
       window.removeEventListener('mouseleave', onLeave)
+      window.removeEventListener('blur', onBlur)
+      document.removeEventListener('mouseleave', onLeave)
+      document.removeEventListener('pointerleave', onLeave)
+      // removed granular pointerout/mouseout capture
+      document.removeEventListener('visibilitychange', onVis)
     }
   }, [])
 
