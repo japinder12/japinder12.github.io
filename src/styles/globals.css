@@ -51,7 +51,7 @@ html { scroll-behavior: smooth; }
 .blob.c { animation: float-c 26s ease-in-out infinite; }
 
 /* Glow cursor */
-.cursor-glow { position: fixed; width: var(--cursor-size, 250px); height: var(--cursor-size, 250px); border-radius: 50%; pointer-events: none; background: radial-gradient(closest-side, rgba(139,92,246,0.18), rgba(34,211,238,0)); transform: translate(-50%, -50%); mix-blend-mode: screen; z-index: 2; transition: opacity 300ms ease; }
+.cursor-glow { position: fixed; width: var(--cursor-size, 225px); height: var(--cursor-size, 225px); border-radius: 50%; pointer-events: none; background: radial-gradient(closest-side, rgba(139,92,246,0.18), rgba(34,211,238,0)); transform: translate(-50%, -50%); mix-blend-mode: screen; z-index: 2; transition: opacity 300ms ease; }
 [data-theme="light"] .cursor-glow { background: radial-gradient(closest-side, rgba(139,92,246,0.28), rgba(34,211,238,0)); mix-blend-mode: multiply; }
 
 /* Nav */
@@ -158,10 +158,125 @@ nav.menu-open .menu-btn span:nth-child(3) { transform: translateY(-8px) rotate(-
 .shimmer::after { content: ""; position: absolute; inset: 0; background: linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent); transform: translateX(-100%); animation: shimmer 2.2s ease-in-out infinite; }
 [data-theme="light"] .exp-title, [data-theme="light"] .exp-lines .line { background: rgba(0,0,0,0.06); }
 [data-theme="light"] .shimmer::after { background: linear-gradient(120deg, transparent, rgba(0,0,0,0.12), transparent); }
-.card { position: relative; background: linear-gradient(180deg, var(--panel-bg-start), var(--panel-bg-end)); border: 1px solid var(--panel-border); border-radius: 16px; padding: 18px; overflow: hidden; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; will-change: transform; }
-.card:hover { border-color: rgba(139,92,246,0.5); box-shadow: 0 10px 40px rgba(139,92,246,0.12); }
+.card { position: relative; background: linear-gradient(180deg, var(--panel-bg-start), var(--panel-bg-end)); border: 1px solid var(--panel-border); border-radius: 16px; padding: 18px; overflow: hidden; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; will-change: transform; 
+  /* per-card accent defaults */
+  --c1: rgba(139,92,246,0.55); /* violet */
+  --c2: rgba(34,211,238,0.5);  /* cyan */
+}
+.projects-grid .card:nth-child(3n+2) { --c1: rgba(245,158,11,0.55); --c2: rgba(139,92,246,0.5); }
+.projects-grid .card:nth-child(3n)   { --c1: rgba(34,211,238,0.55); --c2: rgba(245,158,11,0.5); }
+.card:hover { border-color: color-mix(in oklab, var(--c1) 60%, white 40%); box-shadow: 0 10px 40px color-mix(in oklab, var(--c1) 35%, black 65%); }
+/* Ambient glow backdrop */
+.card::after { content: ""; position: absolute; inset: -1px; border-radius: 24px; pointer-events: none; z-index: 0;
+  background: radial-gradient(120% 100% at 0% 0%, var(--c1), transparent 64%), radial-gradient(120% 100% at 100% 100%, var(--c2), transparent 64%);
+  opacity: 0.3; filter: blur(28px); transition: opacity .25s ease, filter .25s ease;
+}
+.card:hover::after { opacity: 0.46; filter: blur(38px); }
+/* Light sweep on hover */
+@keyframes card-sweep { 0% { transform: translateX(-120%); } 100% { transform: translateX(120%); } }
+.card::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; pointer-events: none; z-index: 1;
+  background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--c2) 60%, white 20%), transparent);
+  opacity: 0; transform: translateX(-120%);
+}
+.card:hover::before { opacity: 0.9; animation: card-sweep 1.8s ease-out 1; }
 .card h3 { margin: 0 0 8px; font-size: 18px; }
 .card p { margin: 0; color: var(--muted); font-size: 14px; }
+/* Card header with icon */
+.card-head { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; position: relative; z-index: 2; }
+.card-head h3 { margin: 0; }
+.picon { width: 22px; height: 22px; flex: 0 0 22px; display: inline-flex; align-items: center; justify-content: center; font-size: 18px; line-height: 1; transform: translateY(-1px); filter: saturate(1.2); position: relative; }
+.picon::after { content: ""; position: absolute; z-index: -2; width: 40px; height: 40px; border-radius: 999px; 
+  background: radial-gradient(60% 60% at 35% 35%, color-mix(in oklab, var(--c1) 75%, white 0%), transparent 70%), radial-gradient(60% 60% at 70% 70%, color-mix(in oklab, var(--c2) 75%, white 0%), transparent 70%);
+  opacity: 0.65; filter: blur(10px);
+  transition: transform .25s ease, opacity .25s ease, filter .25s ease; 
+}
+.picon::before { content: ""; position: absolute; z-index: -1; width: 34px; height: 34px; border-radius: 999px;
+  background: radial-gradient(closest-side, transparent calc(100% - 4px), color-mix(in oklab, var(--c1) 70%, white 10%) 100%);
+  opacity: 0.75; filter: blur(0.2px); transition: transform .25s ease, opacity .25s ease;
+}
+.card:hover .picon::after { opacity: 0.88; filter: blur(12px); transform: scale(1.08); }
+.card:hover .picon::before { transform: scale(1.05); opacity: 0.9; }
+
+/* Inner emoji wrapper and floating notes */
+.picon .emoji { position: relative; z-index: 1; }
+@keyframes note-float {
+  0% { transform: translate(-2px, 6px) rotate(0deg); opacity: 0; }
+  25% { opacity: 0.95; }
+  100% { transform: translate(-10px, -20px) rotate(-8deg); opacity: 0; }
+}
+@keyframes note-float-b {
+  0% { transform: translate(2px, 8px) rotate(0deg); opacity: 0; }
+  25% { opacity: 0.95; }
+  100% { transform: translate(10px, -24px) rotate(10deg); opacity: 0; }
+}
+.picon.music .spark { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); pointer-events: none; font-size: 12px; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4)); z-index: 3; }
+.picon.music .spark.n1 { animation: note-float 1.8s ease-in-out infinite; animation-delay: .1s; }
+.picon.music .spark.n2 { animation: note-float-b 2.2s ease-in-out infinite; animation-delay: .5s; }
+/* Reuse music float for clock/alarm on Scheduler */
+.picon.clockfloat .spark { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); pointer-events: none; font-size: 12px; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4)); z-index: 3; }
+.picon.clockfloat .spark.n1 { animation: note-float 1.8s ease-in-out infinite; animation-delay: .15s; }
+.picon.clockfloat .spark.n2 { animation: note-float-b 2.2s ease-in-out infinite; animation-delay: .55s; }
+
+/* Map/geo ping effect */
+@keyframes ring-ping {
+  0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0.45; }
+  80% { opacity: 0.08; }
+  100% { transform: translate(-50%, -50%) scale(1.8); opacity: 0; }
+}
+.picon .ring { position: absolute; left: 50%; top: 50%; width: 22px; height: 22px; border-radius: 999px; transform: translate(-50%, -50%); border: 2px solid color-mix(in oklab, var(--c2) 70%, white 10%); opacity: 0; pointer-events: none; }
+.picon.ping .ring.r1 { animation: ring-ping 1.6s ease-out infinite; }
+.picon.ping .ring.r2 { animation: ring-ping 1.6s ease-out infinite; animation-delay: .5s; }
+
+/* Compass sway: gentle back-and-forth tilt of emoji */
+@keyframes compass-sway { 0% { transform: rotate(-6deg); } 50% { transform: rotate(6deg); } 100% { transform: rotate(-6deg); } }
+.picon.compass .emoji { display: inline-block; transform-origin: 50% 90%; animation: compass-sway 1.50s ease-in-out infinite; }
+
+/* Beacon: stronger rings + vertical light beam */
+@keyframes ring-beacon {
+  0% { transform: translate(-50%, -50%) scale(0.6); opacity: 0.55; }
+  80% { opacity: 0.1; }
+  100% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
+}
+.picon.beacon .ring { border-color: color-mix(in oklab, var(--c2) 80%, white 10%); }
+.picon.beacon .ring.r1 { animation: ring-beacon 1.8s ease-out infinite; }
+.picon.beacon .ring.r2 { animation: ring-beacon 1.8s ease-out infinite; animation-delay: .6s; }
+.picon.beacon .beam { position: absolute; left: 50%; top: 50%; width: 8px; height: 30px; transform: translate(-50%, calc(-50% - 12px));
+  background: linear-gradient(to top, color-mix(in oklab, var(--c2) 70%, white 0%), transparent 70%);
+  filter: blur(8px); opacity: 0.7; pointer-events: none; animation: beam-pulse 1.6s ease-out infinite; border-radius: 6px;
+}
+@keyframes beam-pulse { 0% { opacity: 0.2; } 50% { opacity: 0.8; } 100% { opacity: 0.2; } }
+
+/* Pin trip: map pin hops between 3 spots */
+@keyframes pin-trip {
+  0%   { transform: translate(-50%, -50%) translate(-8px, -6px) scale(1); }
+  16%  { transform: translate(-50%, -50%) translate(-8px, -10px) scale(1.05); }
+  33%  { transform: translate(-50%, -50%) translate(7px, -5px) scale(1); }
+  49%  { transform: translate(-50%, -50%) translate(7px, -9px) scale(1.05); }
+  66%  { transform: translate(-50%, -50%) translate(-2px, 6px) scale(1); }
+  82%  { transform: translate(-50%, -50%) translate(-2px, 3px) scale(0.98); }
+  100% { transform: translate(-50%, -50%) translate(-8px, -6px) scale(1); }
+}
+.picon.pintrip .pin { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-size: 14px; z-index: 2; pointer-events: none; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5)); animation: pin-trip 2.6s ease-in-out infinite; }
+
+/* File fly-in for lock */
+@keyframes file-fly {
+  0%   { transform: translate(-20px, -12px) scale(1); opacity: 1; }
+  55%  { transform: translate(0px, 0px) scale(0.55); opacity: 0.15; }
+  100% { transform: translate(0px, 0px) scale(0.5); opacity: 0; }
+}
+.picon .key-emoji.small { position: absolute; left: 60%; top: 32%; transform: translate(-50%, -50%) rotate(-12deg); font-size: 11px; opacity: 0.9; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.45)); }
+.picon .fly { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-size: 14px; pointer-events: none; z-index: 2; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); animation: file-fly 2.6s ease-in-out infinite; }
+/* Flash when file hits lock */
+@keyframes lock-flash { 0% { transform: translate(-50%, -50%) scale(0.4); opacity: 0; }
+  35% { opacity: 0; }
+  45% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.95; }
+  60% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.0; }
+  100% { opacity: 0; }
+}
+.picon.filefly .flash { position: absolute; left: 50%; top: 50%; width: 30px; height: 30px; transform: translate(-50%, -50%); border-radius: 999px; pointer-events: none; z-index: 1;
+  background: radial-gradient(closest-side, color-mix(in oklab, var(--c2) 75%, white 10%), transparent 70%);
+  filter: blur(8px); opacity: 0; animation: lock-flash 2.6s ease-out infinite; }
+
 /* External link button in cards */
 .card .ext-link { position: absolute; top: 8px; right: 8px; width: 24px; height: 24px; display: inline-grid; place-items: center; color: var(--text); text-decoration: none; opacity: 0.8; transition: transform .15s ease, opacity .15s ease; }
 .card .ext-link:hover { transform: translateY(-1px) scale(1.05); opacity: 1; }
