@@ -12,6 +12,14 @@ export default function Hero() {
     const glow = glowRef.current
     if (!glow) return
 
+    // Disable glow on touch / coarse pointer devices (mobile/tablet)
+    const isCoarse = (typeof window !== 'undefined' &&
+      ((window.matchMedia && window.matchMedia('(pointer: coarse)').matches) || 'ontouchstart' in window))
+    if (isCoarse) {
+      glow.style.display = 'none'
+      return
+    }
+
     const onMove = (e: MouseEvent) => {
       glow.style.left = e.clientX + 'px'
       glow.style.top = e.clientY + 'px'

@@ -53,6 +53,7 @@ html { scroll-behavior: smooth; }
 /* Glow cursor */
 .cursor-glow { position: fixed; width: var(--cursor-size, 225px); height: var(--cursor-size, 225px); border-radius: 50%; pointer-events: none; background: radial-gradient(closest-side, rgba(139,92,246,0.18), rgba(34,211,238,0)); transform: translate(-50%, -50%); mix-blend-mode: screen; z-index: 2; transition: opacity 300ms ease; }
 [data-theme="light"] .cursor-glow { background: radial-gradient(closest-side, rgba(139,92,246,0.28), rgba(34,211,238,0)); mix-blend-mode: multiply; }
+@media (pointer: coarse) { .cursor-glow { display: none !important; } }
 
 /* Nav */
 nav.sticky { position: sticky; top: 0; z-index: 10; backdrop-filter: blur(8px); background: var(--nav-bg); border-bottom: 1px solid var(--panel-border); }
