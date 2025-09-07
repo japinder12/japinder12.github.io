@@ -141,10 +141,11 @@ nav.menu-open .menu-btn span:nth-child(3) { transform: translateY(-8px) rotate(-
 .skill-label { color: var(--text); font-weight: 700; font-size: 16px; }
 
 /* Section heads for Projects and Experience */
-.projects-head, .experience-head { display: flex; align-items: center; gap: 12px; }
+.projects-head, .experience-head, .education-head { display: flex; align-items: center; gap: 12px; }
 .projects-head .bar { width: 36px; height: 3px; border-radius: 99px; background: var(--accent); display: inline-block; }
 .experience-head .bar { width: 36px; height: 3px; border-radius: 99px; background: #f59e0b; display: inline-block; }
-.projects-head h2, .experience-head h2 { margin: 0; font-size: 28px; letter-spacing: -0.01em; }
+.education-head .bar { width: 36px; height: 3px; border-radius: 99px; background: var(--accent-2); display: inline-block; }
+.projects-head h2, .experience-head h2, .education-head h2 { margin: 0; font-size: 28px; letter-spacing: -0.01em; }
 
 
 .card { position: relative; background: linear-gradient(180deg, var(--panel-bg-start), var(--panel-bg-end)); border: 1px solid var(--panel-border); border-radius: 16px; padding: 18px; overflow: hidden; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; will-change: transform; 
@@ -343,8 +344,9 @@ footer { border-top: 1px solid var(--panel-border); padding: 28px 0 88px; color:
 /* Right column contact info tidy */
 .contact-info { align-self: flex-start; padding-left: 24px; display: flex; flex-direction: column; gap: 8px; text-align: left; align-items: flex-start; }
 .contact-info .lead { color: var(--muted); font-size: 14px; text-align: left; }
-.contact-info .email { display: inline-block; font-weight: 600; color: var(--text); text-decoration: none; font-size: 18px; margin-top: 2px; }
-.contact-info .socials { display: flex; gap: 10px; margin-top: 8px; }
+.contact-info .email { display: inline-block; font-weight: 600; color: var(--text); text-decoration: none; font-size: 18px; margin-top: 0; }
+.contact-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 0; }
+.contact-info .socials { display: flex; gap: 10px; margin-top: 0; }
 @media (max-width: 900px) { .contact-info { padding-left: 0; } }
 
 /* Contact form */
@@ -401,3 +403,14 @@ footer { border-top: 1px solid var(--panel-border); padding: 28px 0 88px; color:
 
 /* Brand gradient word in nav */
 .brand-portfolio { background: linear-gradient(90deg, var(--accent-2), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+/* Education: single-card presentation */
+.education .edu-card { margin-top: 14px; display: flex; align-items: center; gap: 12px; padding: 18px; border-radius: 16px;
+  background: linear-gradient(180deg, var(--panel-bg-start), var(--panel-bg-end)); border: 1px solid var(--panel-border); box-shadow: 0 6px 30px rgba(0,0,0,0.25);
+}
+.education .edu-icon { width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center; font-size: 20px;
+  background: radial-gradient(closest-side, rgba(139,92,246,0.18), rgba(34,211,238,0.12));
+}
+.education .edu-school { font-weight: 800; font-size: 20px; }
+.education .edu-degree { color: var(--muted); font-size: 15px; margin-top: 2px; }
+.education .edu-meta { color: var(--muted); opacity: 0.7; font-size: 14px; margin-top: 2px; }
