@@ -3,6 +3,8 @@
 import React from 'react'
 
 export default function Footer() {
+  // Toggle to quickly enable/disable the contact form UI
+  const SHOW_CONTACT_FORM = false
   const [status, setStatus] = React.useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
   const [error, setError] = React.useState('')
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
@@ -47,30 +49,33 @@ export default function Footer() {
   return (
     <footer id="contact">
       <div className="container footer-cols">
-        <form onSubmit={handleSubmit} className="contact-form" noValidate>
-          <div className="row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-            <div className="field">
-              <label htmlFor="name">Name</label>
-              <input id="name" name="name" placeholder="First Last" autoComplete="name" required />
+        {/* Contact form hidden for now; toggle SHOW_CONTACT_FORM to restore */}
+        {SHOW_CONTACT_FORM && (
+          <form onSubmit={handleSubmit} className="contact-form" noValidate>
+            <div className="row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+              <div className="field">
+                <label htmlFor="name">Name</label>
+                <input id="name" name="name" placeholder="First Last" autoComplete="name" required />
+              </div>
+              <div className="field">
+                <label htmlFor="email">Email</label>
+                <input id="email" type="email" name="email" placeholder="your@email.com" autoComplete="email" required />
+              </div>
             </div>
             <div className="field">
-              <label htmlFor="email">Email</label>
-              <input id="email" type="email" name="email" placeholder="your@email.com" autoComplete="email" required />
+              <label htmlFor="message">Message</label>
+              <textarea id="message" name="message" rows={4} placeholder="Write your message here..." required />
             </div>
-          </div>
-          <div className="field">
-            <label htmlFor="message">Message</label>
-            <textarea id="message" name="message" rows={4} placeholder="Write your message here..." required />
-          </div>
-          <button className="btn" type="submit" style={{ marginTop: 6 }} disabled={status==='sending'}>
-            <span className="pulse" />{status==='sending' ? 'Sending…' : status==='sent' ? 'Sent!' : 'Send Message'}
-          </button>
-          {status==='error' && (
-            <div style={{ color: '#fca5a5', fontSize: 12, marginTop: 6 }}>{error}</div>
-          )}
-        </form>
+            <button className="btn" type="submit" style={{ marginTop: 6 }} disabled={status==='sending'}>
+              <span className="pulse" />{status==='sending' ? 'Sending…' : status==='sent' ? 'Sent!' : 'Send Message'}
+            </button>
+            {status==='error' && (
+              <div style={{ color: '#fca5a5', fontSize: 12, marginTop: 6 }}>{error}</div>
+            )}
+          </form>
+        )}
 
-        <div className="contact-info">
+        <div className="contact-info" style={{ gridColumn: SHOW_CONTACT_FORM ? undefined as any : '1 / -1' }}>
           <div className="lead">Contact me!</div>
           <a className="email" href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'email@yourdomain.com'}`}>{process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'email@yourdomain.com'}</a>
           <div className="socials">
