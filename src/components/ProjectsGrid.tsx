@@ -11,7 +11,7 @@ const projects: Project[] = [
   { title: 'LSTM Classical Music Generator', blurb: 'Symbolic‑music LSTM that generates multi‑bar classical‑style phrases; end‑to‑end MIDI pipeline from parsing → training → synthesis.', tag: 'ML · TensorFlow', href: 'https://github.com/japinder12/lstm-music-generator', icon: '🎼', effect: 'music' },
   { title: 'k‑NN Geolocation (CLIP)', blurb: 'Image geolocation via CLIP embeddings + k‑NN; grid‑searched k and PCA analysis delivered the lowest MDE in my experiments.', tag: 'ML · PyTorch', href: GH, icon: '🧭', effect: 'compass' },
   { title: 'Encrypted File Sharing', blurb: 'RSA‑based file sharing with explicit trust boundaries — typed, spec‑driven design for auth, sharing, and storage.', tag: 'Go · Security', href: GH, icon: '🔐', effect: 'filefly' },
-  { title: 'cvmoji - emoji resume generator', blurb: 'Paste a résumé (text/PDF) and get a sharable emoji card — framework‑aware mapping, balanced rows, WCAG‑AA dark mode, and one‑click PNG export.', tag: 'React · Vite · pdf.js', href: 'https://github.com/japinder12/emoji-resume', icon: '🪪', effect: 'morph' },
+  { title: 'cvmoji - emoji resume generator', blurb: 'Paste a resume (text/PDF) and get a sharable emoji card — framework‑aware mapping, balanced rows, WCAG‑AA dark mode, and one‑click PNG export.', tag: 'React · Vite · pdf.js', href: 'https://github.com/japinder12/emoji-resume', icon: '🪪', effect: 'morph' },
   { title: 'CSO Scheduler', blurb: 'Constraint‑aware matching automates data collection and shift assignments, improving scheduling accuracy and cut scheduling time ~30%.', tag: 'Apps Script', href: GH, icon: '🗓️', effect: 'clockfloat' },
 ]
 
@@ -116,7 +116,7 @@ export default function ProjectsGrid() {
             <span className="bar" aria-hidden />
             <h2>Projects</h2>
           </div>
-          <p style={{ color: 'var(--muted)', marginTop: 8 }}>Selected work across ML and full‑stack — from emoji résumé cards to CLIP geolocation, secure systems, and workforce automation.</p>
+          <p style={{ color: 'var(--muted)', marginTop: 8 }}>Selected work across ML and full‑stack projects.</p>
         </div>
         <div className="projects-grid" style={{ marginTop: 18 }}>
           {projects.map((p) => <TiltCard key={p.title} p={p} />)}
