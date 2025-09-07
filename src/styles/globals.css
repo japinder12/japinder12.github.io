@@ -277,9 +277,54 @@ nav.menu-open .menu-btn span:nth-child(3) { transform: translateY(-8px) rotate(-
   animation: loop-spin 1.6s linear infinite;
 }
 
+/* Card snapshot with twinkles (cvmoji) */
+@keyframes twinkle-up {
+  0% { transform: translate(-2px, 6px) scale(0.85) rotate(0deg); opacity: 0; }
+  25% { opacity: 1; }
+  100% { transform: translate(10px, -18px) scale(1) rotate(16deg); opacity: 0; }
+}
+@keyframes twinkle-up-b {
+  0% { transform: translate(2px, 8px) scale(0.85) rotate(0deg); opacity: 0; }
+  25% { opacity: 1; }
+  100% { transform: translate(-10px, -20px) scale(1) rotate(-14deg); opacity: 0; }
+}
+@keyframes snap-flash {
+  0% { transform: translate(-50%, -50%) scale(0.35); opacity: 0; }
+  40% { opacity: 0; }
+  50% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.95; }
+  70% { transform: translate(-50%, -50%) scale(0.9); opacity: 0; }
+  100% { opacity: 0; }
+}
+.picon.cardshot .twinkle { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); pointer-events: none; font-size: 11px; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.45)); z-index: 3; }
+.picon.cardshot .twinkle.t1 { animation: twinkle-up 2.2s ease-in-out infinite .15s; }
+.picon.cardshot .twinkle.t2 { animation: twinkle-up-b 2.4s ease-in-out infinite .6s; }
+.picon.cardshot .snap { position: absolute; left: 50%; top: 50%; width: 28px; height: 28px; transform: translate(-50%, -50%); border-radius: 999px; pointer-events: none; z-index: 1;
+  background: radial-gradient(closest-side, color-mix(in oklab, var(--c1) 78%, white 12%), transparent 70%);
+  filter: blur(8px); opacity: 0; animation: snap-flash 2.6s ease-out infinite; }
+
+/* Emoji morph cycle (cvmoji) */
+@keyframes morph-on {
+  0% { opacity: 0; transform: translate(-50%, -50%) translateY(6px) scale(0.9) rotate(-6deg); }
+  8% { opacity: 1; transform: translate(-50%, -50%) translateY(0px) scale(1) rotate(0deg); }
+  22% { opacity: 1; transform: translate(-50%, -50%) translateY(0px) scale(1) rotate(0deg); }
+  30% { opacity: 0; transform: translate(-50%, -50%) translateY(-8px) scale(0.96) rotate(6deg); }
+  100% { opacity: 0; }
+}
+.picon.morph .emoji { opacity: 0; }
+.picon.morph .m { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); pointer-events: none; font-size: 14px; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.45)); }
+.picon.morph .m.e1 { animation: morph-on 3.2s ease-in-out infinite 0s; }
+.picon.morph .m.e2 { animation: morph-on 3.2s ease-in-out infinite .8s; }
+.picon.morph .m.e3 { animation: morph-on 3.2s ease-in-out infinite 1.6s; }
+.picon.morph .m.e4 { animation: morph-on 3.2s ease-in-out infinite 2.4s; }
+
 /* External link button in cards */
 .card .ext-link { position: absolute; top: 8px; right: 8px; width: 24px; height: 24px; display: inline-grid; place-items: center; color: var(--text); text-decoration: none; opacity: 0.8; transition: transform .15s ease, opacity .15s ease; }
+.card .ext-link { z-index: 4; }
 .card .ext-link:hover { transform: translateY(-1px) scale(1.05); opacity: 1; }
+
+/* Full-card link overlay for better click area */
+.card .card-link { position: absolute; inset: 0; border-radius: 16px; z-index: 3; text-decoration: none; }
+.card .card-link:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(139,92,246,0.35); }
 .badge { position: absolute; top: 12px; right: 12px; font-size: 11px; color: #0b0b0c; background: #e5e7eb; border-radius: 999px; padding: 4px 8px; }
 
 /* About */
