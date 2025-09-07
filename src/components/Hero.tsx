@@ -101,7 +101,7 @@ export default function Hero() {
         </div>
 
         <div className="tags reveal" style={{ transitionDelay: '320ms' }}>
-          {['Software Engineer', 'Fullstack Developer', 'Backend Engineer'].map((t) => (
+          {['Software Engineer', 'Fullstack Developer', 'Backend Engineer', 'Trying to build cool things'].map((t) => (
             <span className="tag" key={t}>{t}</span>
           ))}
         </div>
