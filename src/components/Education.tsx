@@ -20,11 +20,10 @@ export default function Education() {
           <div className="edu-text">
             <div className="edu-school">{edu.school}</div>
             <div className="edu-degree">{edu.degree}</div>
-            {edu.period && <div className="edu-meta">{edu.period}</div>}
           </div>
+          {edu.period && <div className="edu-meta right">{edu.period}</div>}
         </div>
       </div>
     </section>
   )
 }
-

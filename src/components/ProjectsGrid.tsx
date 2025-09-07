@@ -116,7 +116,7 @@ export default function ProjectsGrid() {
             <span className="bar" aria-hidden />
             <h2>Projects</h2>
           </div>
-          <p style={{ color: 'var(--muted)', marginTop: 8 }}>Selected work across ML and full‑stack — from CLIP‑based geolocation to secure systems and workforce automation.</p>
+          <p style={{ color: 'var(--muted)', marginTop: 8 }}>Selected work across ML and full‑stack — from emoji résumé cards to CLIP geolocation, secure systems, and workforce automation.</p>
         </div>
         <div className="projects-grid" style={{ marginTop: 18 }}>
           {projects.map((p) => <TiltCard key={p.title} p={p} />)}
