@@ -89,7 +89,7 @@ function TiltCard({ p }: { p: Project }) {
               <span className="m e1">💻</span>
               <span className="m e2">📝</span>
               <span className="m e3">💼</span>
-              <span className="m e4">📑</span>
+              <span className="m e4">📄</span>
             </>
           )}
           {p.effect === 'cardshot' && (
