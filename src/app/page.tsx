@@ -11,8 +11,8 @@ export default function Page() {
       <Nav />
       <Hero />
       <ProjectsGrid />
-      <Skills />
       <Experience />
+      <Skills />
       <Footer />
     </main>
   )
