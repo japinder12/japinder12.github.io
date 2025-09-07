@@ -106,9 +106,8 @@ export default function Hero() {
           ))}
         </div>
         <p className="sub reveal" style={{ transitionDelay: '220ms' }}>
-          Building reliable systems with clean APIs, fast UIs, and measurable outcomes
+          I build friendly frontends, reliable backends and ship end-to-end features, effectively and efficiently.
         </p>
-        {/* CTA buttons intentionally removed per request */}
       </div>
     </section>
   )
