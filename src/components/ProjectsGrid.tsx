@@ -2,7 +2,15 @@
 
 import { useRef } from 'react'
 
-type Project = { title: string; blurb: string; tag: string; href?: string; icon?: string; effect?: 'music' | 'compass' | 'filefly' | 'clockfloat' | 'pintrip' | 'botsim' | 'planner' | 'cardshot' | 'morph' | string }
+type Project = {
+  title: string;
+  blurb: string;
+  tag: string;
+  href?: string;
+  icon?: string;
+  effect?: 'music' | 'compass' | 'filefly' | 'clockfloat' | 'pintrip' | 'botsim' | 'planner' | 'cardshot' | 'morph' | string
+  logo?: string
+}
 
 const GH = (process.env.NEXT_PUBLIC_GITHUB_URL as string) || 'https://github.com/japinder12'
 const projects: Project[] = [
