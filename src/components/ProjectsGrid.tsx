@@ -6,12 +6,12 @@ type Project = { title: string; blurb: string; tag: string; href?: string; icon?
 
 const GH = (process.env.NEXT_PUBLIC_GITHUB_URL as string) || 'https://github.com/japinder12'
 const projects: Project[] = [
-  { title: 'Toronto Safety Dashboard', blurb: 'Leaflet + Next.js dashboard to explore Toronto Police Service MCI near any address — postal‑code search, time and radius filters, and colour legend.', tag: 'Next.js · Leaflet', href: 'https://github.com/japinder12/toronto-safety', icon: '🗺️', effect: 'pintrip' },
+  { title: 'Toronto Safety Dashboard', blurb: 'Leaflet + Next.js dashboard to explore Toronto Police Service MCI near any address — postal‑code search, time and radius filters, and colour legend.', tag: 'Next.js · Leaflet', href: 'https://toronto-safety-five.vercel.app', icon: '🗺️', effect: 'pintrip' },
   { title: 'Path Planning & Control Sandbox', blurb: 'Interactive A* planning with Chaikin smoothing and Pure Pursuit/PID tracking; SFML viz with CSV telemetry and PNG map editing.', tag: 'C++ · SFML', href: 'https://github.com/japinder12/path-planning', icon: '🤖', effect: 'planner' },
   { title: 'LSTM Classical Music Generator', blurb: 'Symbolic‑music LSTM that generates multi‑bar classical‑style phrases; end‑to‑end MIDI pipeline from parsing → training → synthesis.', tag: 'ML · TensorFlow', href: 'https://github.com/japinder12/lstm-music-generator', icon: '🎼', effect: 'music' },
   { title: 'k‑NN Geolocation', blurb: 'Image geolocation via CLIP embeddings + k‑NN; grid‑searched k and PCA analysis delivered the lowest MDE in my experiments.', tag: 'ML · PyTorch', href: GH, icon: '🧭', effect: 'compass' },
   { title: 'Encrypted File Sharing', blurb: 'RSA‑based file sharing with explicit trust boundaries — typed, spec‑driven design for auth, sharing, and storage.', tag: 'Go · Security', href: 'https://github.com/japinder12/securefs-go', icon: '🔐', effect: 'filefly' },
-  { title: 'cvmoji - emoji resume generator', blurb: 'Paste a resume (text/PDF) and get a sharable emoji card — framework‑aware mapping, balanced rows, WCAG‑AA dark mode, and one‑click PNG export.', tag: 'React · Vite · pdf.js', href: 'https://github.com/japinder12/emoji-resume', icon: '🪪', effect: 'morph' },
+  { title: 'cvmoji - emoji resume generator', blurb: 'Paste a resume (text/PDF) and get a sharable emoji card — framework‑aware mapping, balanced rows, WCAG‑AA dark mode, and one‑click PNG export.', tag: 'React · Vite · pdf.js', href: 'https://cvmoji.vercel.app', icon: '🪪', effect: 'morph' },
   { title: 'Shift Scheduler', blurb: 'Constraint‑aware matching automates data collection and shift assignments, improving scheduling accuracy and cut scheduling time ~30%.', tag: 'Apps Script', icon: '🗓️', effect: 'clockfloat' },
 ]
 
