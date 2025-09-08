@@ -14,7 +14,7 @@ type Project = {
 
 const GH = (process.env.NEXT_PUBLIC_GITHUB_URL as string) || 'https://github.com/japinder12'
 const projects: Project[] = [
-  { title: 'F1 x ML Project (WIP)', blurb: '🚧 Under construction 🚧 🏎️💨 \nComing soon!', tag: 'ML', icon: '🏎️', effect: 'lightsout', linkOff: true },
+  { title: 'F1 x ML Project (WIP)', blurb: '🚧 Under construction 🚧 🏎️💨 \nExperimenting with racing data + ML predictions. Demo + repo coming soon.', tag: 'ML', icon: '🏁', effect: 'lightsgo', linkOff: true },
   { title: 'Path Planning & Control Sandbox  ', blurb: 'Path planning is abstract without visuals → Implemented interactive A* planning with Chaikin smoothing and Pure Pursuit/PID tracking.', tag: 'C++ · SFML', href: 'https://github.com/japinder12/path-planning', icon: '🤖', effect: 'planner' },
   { title: 'Toronto Safety Dashboard', blurb: 'Created a user-friendly dashboard to explore Toronto Police Service MCI near any address — postal‑code search, time and radius filters, and colour legend.', tag: 'Next.js · Leaflet', href: 'https://toronto-safety-five.vercel.app', icon: '🗺️', effect: 'pintrip' },
   { title: 'LSTM Classical Music Generator', blurb: 'Symbolic‑music LSTM that generates multi‑bar classical‑style phrases; end‑to‑end MIDI pipeline from parsing → training → synthesis.', tag: 'ML · TensorFlow', href: 'https://github.com/japinder12/lstm-music-generator', icon: '🎼', effect: 'music' },
@@ -77,7 +77,7 @@ function TiltCard({ p }: { p: Project }) {
 
       <div className="card-head">
         <span className={`picon ${p.effect || ''}`} aria-hidden>
-          <span className="emoji">{p.icon || '📦'}</span>
+          <span className="emoji">{p.icon || '🚧'}</span>
           {p.effect === 'music' && (<><span className="spark n1">🎵</span><span className="spark n2">🎶</span></>)}
           {p.effect === 'clockfloat' && (<><span className="spark n1">⏰</span><span className="spark n2">🕒</span></>)}
           {p.effect === 'filefly' && (<><span className="key-emoji small">🔑</span><span className="fly">📁</span><span className="flash" /></>)}
