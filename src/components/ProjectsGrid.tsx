@@ -51,7 +51,6 @@ function TiltCard({ p }: { p: Project }) {
       className="card"
       onMouseMove={onMove}
       onMouseLeave={onLeave}
-      // If no link, present as a group, not a link
       role={link ? undefined : 'group'}
       aria-label={link ? undefined : p.title}
     >
