@@ -1,4 +1,5 @@
 ## Japinder's Portfolio
+🔗 **Link** - [japindernarula.com](https://japindernarula.com)
 
 **My personal portfolio website** — built with Next.js, React, and Tailwind CSS.  
 Showcases projects, experience, and skills in a clean, interactive format.
