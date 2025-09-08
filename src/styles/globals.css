@@ -210,7 +210,7 @@ nav.menu-open .menu-btn span:nth-child(3) { transform: translateY(-8px) rotate(-
 
 /* Compass sway: gentle back-and-forth tilt of emoji */
 @keyframes compass-sway { 0% { transform: rotate(-6deg); } 50% { transform: rotate(6deg); } 100% { transform: rotate(-6deg); } }
-.picon.compass .emoji { display: inline-block; transform-origin: 50% 90%; animation: compass-sway 1.50s ease-in-out infinite; }
+.picon.compass .emoji { display: inline-block; transform-origin: 50% 90%; animation: compass-sway 1.20s ease-in-out infinite; }
 
 /* Pin trip: simplified small hop */
 @keyframes pin-trip {
@@ -243,29 +243,6 @@ nav.menu-open .menu-btn span:nth-child(3) { transform: translateY(-8px) rotate(-
   background: radial-gradient(closest-side, color-mix(in oklab, var(--c2) 75%, white 10%), transparent 70%);
   filter: blur(8px); opacity: 0; animation: lock-flash 2.6s ease-out infinite; }
 
-/* Bot sim: moving agent in a small figure-8 */
-@keyframes bot-fig8 {
-  0%    { transform: translate(-50%, -50%) translate(-6px,  0px); }
-  12.5% { transform: translate(-50%, -50%) translate(-4px, -4px); }
-  25%   { transform: translate(-50%, -50%) translate( 0px, -6px); }
-  37.5% { transform: translate(-50%, -50%) translate( 4px, -4px); }
-  50%   { transform: translate(-50%, -50%) translate( 6px,  0px); }
-  62.5% { transform: translate(-50%, -50%) translate( 4px,  4px); }
-  75%   { transform: translate(-50%, -50%) translate( 0px,  6px); }
-  87.5% { transform: translate(-50%, -50%) translate(-4px,  4px); }
-  100%  { transform: translate(-50%, -50%) translate(-6px,  0px); }
-}
-@keyframes node-pulse {
-  0% { opacity: 0.1; transform: translate(var(--tx), var(--ty)) scale(0.8); }
-  40% { opacity: 0.8; transform: translate(var(--tx), var(--ty)) scale(1); }
-  100% { opacity: 0.1; transform: translate(var(--tx), var(--ty)) scale(0.85); }
-}
-.picon.botsim .agent { position: absolute; left: 50%; top: 50%; width: 6px; height: 6px; border-radius: 999px; background: color-mix(in oklab, var(--c2) 80%, white 10%); box-shadow: 0 0 8px color-mix(in oklab, var(--c2) 50%, black 50%); transform: translate(-50%, -50%); animation: bot-fig8 2.4s linear infinite; z-index: 2; }
-.picon.botsim .node { position: absolute; left: 50%; top: 50%; width: 3px; height: 3px; border-radius: 999px; background: color-mix(in oklab, var(--c1) 75%, white 10%); box-shadow: 0 0 6px color-mix(in oklab, var(--c1) 45%, black 55%); opacity: 0.4; transform: translate(-50%, -50%); }
-.picon.botsim .node.a { --tx: -8px; --ty: 6px; animation: node-pulse 1.8s ease-in-out infinite; }
-.picon.botsim .node.b { --tx: -2px; --ty: -2px; animation: node-pulse 1.8s ease-in-out infinite .2s; }
-.picon.botsim .node.c { --tx: 7px; --ty: -7px; animation: node-pulse 1.8s ease-in-out infinite .4s; }
-
 /* Bot on loop, heading and scan */
 @keyframes loop-spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
 @keyframes bot-pulse { 0% { transform: translate(-50%, -50%) scale(0.95); } 50% { transform: translate(-50%, -50%) scale(1); } 100% { transform: translate(-50%, -50%) scale(0.95); } }
@@ -277,31 +254,6 @@ nav.menu-open .menu-btn span:nth-child(3) { transform: translateY(-8px) rotate(-
   opacity: 0.75; filter: saturate(1.1) drop-shadow(0 0 6px color-mix(in oklab, var(--c2) 45%, black 55%));
   animation: loop-spin 1.6s linear infinite;
 }
-
-/* Card snapshot with twinkles (cvmoji) */
-@keyframes twinkle-up {
-  0% { transform: translate(-2px, 6px) scale(0.85) rotate(0deg); opacity: 0; }
-  25% { opacity: 1; }
-  100% { transform: translate(10px, -18px) scale(1) rotate(16deg); opacity: 0; }
-}
-@keyframes twinkle-up-b {
-  0% { transform: translate(2px, 8px) scale(0.85) rotate(0deg); opacity: 0; }
-  25% { opacity: 1; }
-  100% { transform: translate(-10px, -20px) scale(1) rotate(-14deg); opacity: 0; }
-}
-@keyframes snap-flash {
-  0% { transform: translate(-50%, -50%) scale(0.35); opacity: 0; }
-  40% { opacity: 0; }
-  50% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.95; }
-  70% { transform: translate(-50%, -50%) scale(0.9); opacity: 0; }
-  100% { opacity: 0; }
-}
-.picon.cardshot .twinkle { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); pointer-events: none; font-size: 11px; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.45)); z-index: 3; }
-.picon.cardshot .twinkle.t1 { animation: twinkle-up 2.2s ease-in-out infinite .15s; }
-.picon.cardshot .twinkle.t2 { animation: twinkle-up-b 2.4s ease-in-out infinite .6s; }
-.picon.cardshot .snap { position: absolute; left: 50%; top: 50%; width: 28px; height: 28px; transform: translate(-50%, -50%); border-radius: 999px; pointer-events: none; z-index: 1;
-  background: radial-gradient(closest-side, color-mix(in oklab, var(--c1) 78%, white 12%), transparent 70%);
-  filter: blur(8px); opacity: 0; animation: snap-flash 2.6s ease-out infinite; }
 
 /* Emoji morph cycle (cvmoji) */
 @keyframes morph-on {
@@ -422,7 +374,7 @@ footer { border-top: 1px solid var(--panel-border); padding: 8px 0 88px; color: 
   opacity: 1;
   filter: none;
   object-fit: contain;
-  border-radius: 6px;    /* <-- round corners */
+  border-radius: 6px;
   background: transparent;
 }
 @media (min-width: 980px) {
@@ -432,7 +384,6 @@ footer { border-top: 1px solid var(--panel-border); padding: 8px 0 88px; color: 
 /* Brand gradient word in nav */
 .brand-portfolio { background: linear-gradient(90deg, var(--accent-2), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
-/* Education: single-card presentation */
 /* Education: card with right-aligned dates */
 .education .edu-card { margin-top: 14px; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; padding: 16px; border-radius: 14px;
   background: linear-gradient(180deg, var(--panel-bg-start), var(--panel-bg-end)); border: 1px solid var(--panel-border); box-shadow: 0 6px 24px rgba(0,0,0,0.22); max-width: 720px;
