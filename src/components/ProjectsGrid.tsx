@@ -8,14 +8,14 @@ type Project = {
   tag: string;
   href?: string;
   icon?: string;
-  effect?: 'music' | 'compass' | 'filefly' | 'clockfloat' | 'pintrip' | 'botsim' | 'planner' | 'cardshot' | 'morph' | string
+  effect?: string
   linkOff?: boolean;
 }
 
 const GH = (process.env.NEXT_PUBLIC_GITHUB_URL as string) || 'https://github.com/japinder12'
 const projects: Project[] = [
-  { title: 'Path Planning & Control Sandbox  ', blurb:
-    'Path planning is abstract without visuals → Implemented interactive A* planning with Chaikin smoothing and Pure Pursuit/PID tracking.', tag: 'C++ · SFML', href: 'https://github.com/japinder12/path-planning', icon: '🤖', effect: 'planner' },
+  { title: 'F1 x ML Project (WIP)', blurb: '🚧 Under construction 🚧 🏎️💨 \nComing soon!', tag: 'ML', icon: '🏎️', effect: 'lightsout', linkOff: true },
+  { title: 'Path Planning & Control Sandbox  ', blurb: 'Path planning is abstract without visuals → Implemented interactive A* planning with Chaikin smoothing and Pure Pursuit/PID tracking.', tag: 'C++ · SFML', href: 'https://github.com/japinder12/path-planning', icon: '🤖', effect: 'planner' },
   { title: 'Toronto Safety Dashboard', blurb: 'Created a user-friendly dashboard to explore Toronto Police Service MCI near any address — postal‑code search, time and radius filters, and colour legend.', tag: 'Next.js · Leaflet', href: 'https://toronto-safety-five.vercel.app', icon: '🗺️', effect: 'pintrip' },
   { title: 'LSTM Classical Music Generator', blurb: 'Symbolic‑music LSTM that generates multi‑bar classical‑style phrases; end‑to‑end MIDI pipeline from parsing → training → synthesis.', tag: 'ML · TensorFlow', href: 'https://github.com/japinder12/lstm-music-generator', icon: '🎼', effect: 'music' },
   { title: 'Encrypted File Sharing', blurb: 'Local storage lacked security → built an encrypted file system in Go (AES-GCM, HMAC) for safe sharing.', tag: 'Go · Security', href: 'https://github.com/japinder12/securefs-go', icon: '🔐', effect: 'filefly' },
@@ -85,6 +85,7 @@ function TiltCard({ p }: { p: Project }) {
           {p.effect === 'pintrip' && (<span className="pin">📍</span>)}
           {p.effect === 'planner' && (<><span className="bot" /><span className="heading" /><span className="loop" /></>)}
           {p.effect === 'morph' && (<><span className="m e1">💻</span><span className="m e2">📝</span><span className="m e3">💼</span><span className="m e4">📄</span></>)}
+          {p.effect === 'lightsout' && (<><span className="grid"><span className="light l1" /><span className="light l2" /><span className="light l3" /><span className="light l4" /><span className="light l5" /></span><span className="flag">🏁</span></>)}
         </span>
         <h3>{p.title}</h3>
       </div>
