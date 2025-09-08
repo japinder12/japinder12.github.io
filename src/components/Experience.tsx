@@ -15,8 +15,8 @@ export default function Experience() {
       role: "Software Engineer",
       period: "May 2024 – Aug 2024 · Mountain View, CA",
       bullets: [
-        "Architected and deployed Spring Boot REST API endpoints, improving data accuracy and backend efficiency, and reducing customer support calls by over 15%.",
-        "Collaborated with cross-functional teams to integrate APIs into customer-facing UI, refining database schemas and enhancing data reliability across thousands of transactions daily.",
+        "Filing errors led to high customer support volume. Built and deployed Spring Boot REST API endpoints, improving data accuracy and reducing support calls by over 15%.",
+        "Data inconsistencies between backend and UI disrupted workflows. Integrated APIs into customer-facing UI and refined schemas, ensuring reliable transactions across thousands of daily filings.",
       ],
       logo: "/logos/legalzoom.png",
     },
@@ -25,13 +25,13 @@ export default function Experience() {
       role: "Software Engineer",
       period: "Jun 2022 – Aug 2022 · Remote",
       bullets: [
-        "Developed Merkle tree data structures in Go and Rust with MongoDB integration, enhancing backend security and integrity verification for distributed systems.",
-        "Automated operational workflows with secure scripts, reducing manual maintenance effort by ~30%.",
+        "Distributed systems required tamper-proof validation. Implemented Merkle tree data structures in Go/Rust with MongoDB integration, reinforcing backend security.",
+        "Automated operational task workflows with secure scripts, cutting maintenance time by ~30%."
       ],
       logo: "/logos/pienomial.png",
     },
     {
-      company: "UC Berkeley - EECS",
+      company: "UC Berkeley - EECS (CS61B)",
       role: "Data Structures Course Staff",
       period: "Jan 2023 – May 2023 · Berkeley, CA",
       bullets: [
@@ -44,7 +44,8 @@ export default function Experience() {
       role: "Community Service Officer",
       period: "Nov 2022 – Jun 2024 · Berkeley, CA",
       bullets: [
-        "Engineered shift automation system in Apps Script, reducing scheduling time by ~30% and improving efficiency for 80+ department staff.",
+        "Manual shift scheduling for 80+ staff was slow and error-prone.",
+        "Took initiative to develop a shift scheduling tool, reducing scheduling time by >30% and boosting department efficiency.",
       ],
       logo: "/logos/ucpd_safewalk.png",
     },
