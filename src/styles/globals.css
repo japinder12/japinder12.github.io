@@ -270,42 +270,6 @@ nav.menu-open .menu-btn span:nth-child(3) { transform: translateY(-8px) rotate(-
 .picon.morph .m.e3 { animation: morph-on 3.2s ease-in-out infinite 1.6s; }
 .picon.morph .m.e4 { animation: morph-on 3.2s ease-in-out infinite 2.4s; }
 
-/* F1 start lights: five reds blink on, then lights out + flag swoosh */
-.picon.lightsout { position: relative; width: 48px; height: 22px; }
-.picon.lightsout .grid {
-  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
-  display: grid; grid-template-columns: repeat(5, 8px); gap: 6px;
-}
-.picon.lightsout .light {
-  width: 8px; height: 14px; border-radius: 3px;
-  background: #3a3a3a; box-shadow: 0 0 0 1px rgba(255,255,255,0.06) inset;
-  animation: light-warm 2.0s ease-in forwards;
-  opacity: 0.6;
-}
-.picon.lightsout .light.l1 { animation-delay: .1s; }
-.picon.lightsout .light.l2 { animation-delay: .25s; }
-.picon.lightsout .light.l3 { animation-delay: .4s; }
-.picon.lightsout .light.l4 { animation-delay: .55s; }
-.picon.lightsout .light.l5 { animation-delay: .7s; }
-
-@keyframes light-warm {
-  0%   { background: #3a3a3a; opacity: 0.6; }
-  35%  { background: #ff2a2a; opacity: 1; box-shadow: 0 0 10px #ff2a2a; }
-  70%  { background: #ff2a2a; opacity: 1; }
-  100% { background: #111;    opacity: 0.15; box-shadow: none; } /* lights out */
-}
-
-.picon.lightsout .flag {
-  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) translateX(-14px);
-  font-size: 14px; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.45));
-  opacity: 0; animation: flag-swoosh 1.2s ease-out 1s forwards;
-}
-
-@keyframes flag-swoosh {
-  0%   { opacity: 0; transform: translate(-50%, -50%) translateX(-14px) rotate(-8deg); }
-  40%  { opacity: 1; transform: translate(-50%, -50%) translateX(6px) rotate(6deg); }
-  100% { opacity: 0; transform: translate(-50%, -50%) translateX(22px) rotate(0deg); }
-}
 
 /* External link button in cards */
 .card .ext-link { position: absolute; top: 8px; right: 8px; width: 24px; height: 24px; display: inline-grid; place-items: center; color: var(--text); text-decoration: none; opacity: 0.8; transition: transform .15s ease, opacity .15s ease; }

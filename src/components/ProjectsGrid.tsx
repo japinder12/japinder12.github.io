@@ -14,7 +14,7 @@ type Project = {
 
 const GH = (process.env.NEXT_PUBLIC_GITHUB_URL as string) || 'https://github.com/japinder12'
 const projects: Project[] = [
-  { title: 'F1 x ML Project (WIP)', blurb: '🚧 Under construction 🚧 🏎️💨 \nExperimenting with racing data + ML predictions. Demo + repo coming soon.', tag: 'ML', icon: '🏁', effect: 'lightsgo', linkOff: true },
+  { title: 'F1 x ML Project (WIP)', blurb: '🚧 Under construction 🚧 🏎️💨 \nExperimenting with racing data + ML predictions. Demo + repo coming soon.', tag: 'ML', icon: '🏁', effect: '', linkOff: true },
   { title: 'Path Planning & Control Sandbox  ', blurb: 'Path planning is abstract without visuals → Implemented interactive A* planning with Chaikin smoothing and Pure Pursuit/PID tracking.', tag: 'C++ · SFML', href: 'https://github.com/japinder12/path-planning', icon: '🤖', effect: 'planner' },
   { title: 'Toronto Safety Dashboard', blurb: 'Created a user-friendly dashboard to explore Toronto Police Service MCI near any address — postal‑code search, time and radius filters, and colour legend.', tag: 'Next.js · Leaflet', href: 'https://toronto-safety-five.vercel.app', icon: '🗺️', effect: 'pintrip' },
   { title: 'LSTM Classical Music Generator', blurb: 'Symbolic‑music LSTM that generates multi‑bar classical‑style phrases; end‑to‑end MIDI pipeline from parsing → training → synthesis.', tag: 'ML · TensorFlow', href: 'https://github.com/japinder12/lstm-music-generator', icon: '🎼', effect: 'music' },
@@ -84,7 +84,6 @@ function TiltCard({ p }: { p: Project }) {
           {p.effect === 'pintrip' && (<span className="pin">📍</span>)}
           {p.effect === 'planner' && (<><span className="bot" /><span className="heading" /><span className="loop" /></>)}
           {p.effect === 'morph' && (<><span className="m e1">💻</span><span className="m e2">📝</span><span className="m e3">💼</span><span className="m e4">📄</span></>)}
-          {p.effect === 'lightsout' && (<><span className="grid"><span className="light l1" /><span className="light l2" /><span className="light l3" /><span className="light l4" /><span className="light l5" /></span><span className="flag">🏁</span></>)}
         </span>
         <h3>{p.title}</h3>
       </div>
