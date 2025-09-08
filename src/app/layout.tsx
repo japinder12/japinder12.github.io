@@ -7,12 +7,11 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://japindernarula.com'),
   icons: {
     icon: [
-      { url: '/icon.svg?v=3' },
-      { url: '/icon.png?v=3' },
-      { url: '/favicon.svg?v=3' },
+      { url: '/icon.svg' },
+      { url: '/favicon.svg' },
     ],
-    shortcut: '/icon.svg?v=3',
-    apple: '/apple-icon.png?v=3',
+    shortcut: '/icon.svg',
+    apple: '/apple-icon.png',
   },
   // openGraph: {
   //   title: "Japinder's Portfolio",
