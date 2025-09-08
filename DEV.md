@@ -6,8 +6,7 @@ This document contains the implementation details, local setup, environment vari
 
 - Next.js 14 (App Router), React 18, TypeScript
 - Email: Resend (API)
-- Icons: `react-icons` (Simple Icons, Font Awesome, Tabler)
-- Asset generation: `sharp` (SVG → PNG)
+- Icons: `react-icons`
 
 ### Local Development
 
@@ -30,11 +29,11 @@ This document contains the implementation details, local setup, environment vari
 - `npm run dev`
 - Open http://localhost:3000
 
-### Contact API
+<!-- ### Contact API
 
 - Route: `src/app/api/contact/route.ts`
 - Validates `name`, `email`, `message`, then POSTs to Resend with `RESEND_API_KEY`, `RESEND_FROM`, `CONTACT_TO_EMAIL`.
-- For UI: `src/components/Footer.tsx` handles form submission and status.
+- For UI: `src/components/Footer.tsx` handles form submission and status. -->
 
 ### Icons & Favicons
 
@@ -62,8 +61,18 @@ This document contains the implementation details, local setup, environment vari
    - GoDaddy DNS → A apex `76.76.21.21`, CNAME `www` `cname.vercel-dns.com`, or switch to Vercel nameservers
 5) Resend: verify domain before using a custom From address
 
-Safari icon caching
-- Safari caches site icons aggressively. Versioned URLs (`?v=3`) help, but you may need to clear website data or test in a Private window.
+## Deployment
+
+This project is hosted on [Vercel](https://vercel.com/).  
+To avoid deploying on every commit, using a custom **Ignored Build Step** (`scripts/vercel_ignore_build.sh`).
+
+- By default, commits will **not** trigger a deployment.  
+- To trigger a deployment, include `[deploy]` in commit message:
+
+```bash
+git commit -m "Update homepage [deploy]"
+git push
+```
 
 ### Static Export (optional)
 
@@ -81,4 +90,3 @@ If deploying to GitHub Pages (no serverless functions):
 ### License
 
 MIT
-
