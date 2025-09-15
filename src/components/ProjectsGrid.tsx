@@ -21,6 +21,7 @@ const projects: Project[] = [
   { title: 'F1 ｘ ML Project (WIP)', blurb: '🚧 Under construction 🚧 🏎️💨 \nExperimenting with racing data + ML predictions. Demo + repo coming soon.', tag: 'ML', icon: '🏁', effect: '', linkOff: true },
   { title: 'k‑NN Geolocation', blurb: 'Image geolocation via CLIP embeddings + k‑NN; grid‑searched k and PCA analysis delivered the lowest MDE in my experiments.', tag: 'ML · PyTorch', href: GH, icon: '🧭', effect: 'compass', linkOff: true },
   { title: 'cvmoji - emoji resume generator', blurb: 'Plain text resumes are boring → created a React/TypeScript generator that maps skills to emojis and exports SVG/PNG.', tag: 'React · Vite · pdf.js', href: 'https://cvmoji.vercel.app', icon: '🪪', effect: 'morph' },
+  { title: 'LinkedOut', blurb: 'LinkedIn titles too plain? Type your role → get a cursed lineup of inflated, buzzword-heavy titles (with Meme Mode for extra LinkedIn clout).', tag: 'Next.js · TypeScript · Tailwind', href: 'https://linkedout-titles.vercel.app', icon: '🏆', effect: 'clout' },
   { title: 'Shift Scheduler', blurb: 'Constraint‑aware matching automates data collection and shift assignments, improving scheduling accuracy and cut scheduling time by 30%.', tag: 'Apps Script', icon: '🗓️', effect: 'clockfloat', linkOff: true },
 ]
 
@@ -84,6 +85,7 @@ function TiltCard({ p }: { p: Project }) {
           {p.effect === 'pintrip' && (<span className="pin">📍</span>)}
           {p.effect === 'planner' && (<><span className="bot" /><span className="heading" /><span className="loop" /></>)}
           {p.effect === 'morph' && (<><span className="m e1">💻</span><span className="m e2">📝</span><span className="m e3">💼</span><span className="m e4">📄</span></>)}
+          {p.effect === 'clout' && (<><span className="halo" aria-hidden /><span className="spark s1" aria-hidden>✨</span><span className="spark s2" aria-hidden>✦</span><span className="spark s3" aria-hidden>✧</span></>)}
         </span>
         <h3>{p.title}</h3>
       </div>

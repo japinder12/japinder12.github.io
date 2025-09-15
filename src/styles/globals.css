@@ -270,6 +270,66 @@ nav.menu-open .menu-btn span:nth-child(3) { transform: translateY(-8px) rotate(-
 .picon.morph .m.e3 { animation: morph-on 3.2s ease-in-out infinite 1.6s; }
 .picon.morph .m.e4 { animation: morph-on 3.2s ease-in-out infinite 2.4s; }
 
+/* Clout effect (linkedout) */
+.picon.clout { position: relative; }
+
+/* soft breathing halo */
+.picon.clout .halo{
+  position:absolute; inset:-2px; border-radius:999px; z-index:-1;
+  background:radial-gradient(closest-side,
+    color-mix(in oklab,var(--c1) 55%, white 0%) 0%,
+    transparent 70%);
+  filter: blur(8px);
+  opacity:.0; transform:scale(.9);
+  animation:cloutHalo 2.6s ease-in-out infinite;
+}
+
+/* common sparkle base */
+.picon.clout .spark{
+  position:absolute; pointer-events:none; filter:drop-shadow(0 1px 2px rgba(0,0,0,.35));
+  opacity:0; transform:translate(-50%,-50%) scale(.6) rotate(0deg);
+  animation:cloutPop 2.4s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/* 3 sparkles: different spots/sizes/staggers */
+.picon.clout .spark.s1{ left: 84%; top: 20%; font-size:12px; animation-delay:.05s; }
+.picon.clout .spark.s2{ left: 18%; top: 28%; font-size:10px; animation-delay:.35s; }
+.picon.clout .spark.s3{ left: 78%; top: 78%; font-size:14px; animation-delay:.75s; }
+
+/* keyframes */
+@keyframes cloutHalo{
+  0%   { opacity:0;   transform:scale(.9); }
+  30%  { opacity:.38; transform:scale(1.06); }
+  60%  { opacity:.18; transform:scale(1.00); }
+  100% { opacity:0;   transform:scale(.95); }
+}
+
+@keyframes cloutPop{
+  0%   { opacity:0;   transform:translate(-50%,-50%) scale(.6) rotate(-8deg); }
+  12%  { opacity:1;   transform:translate(-50%,-56%) scale(1.05) rotate(0deg); }
+  24%  { opacity:1;   transform:translate(-50%,-52%) scale(1.0)  rotate(8deg); }
+  40%  { opacity:0;   transform:translate(-50%,-46%) scale(.85)  rotate(12deg); }
+  100% { opacity:0; }
+}
+
+/* (optional) gentle shimmer on the trophy itself */
+.picon.clout .emoji{
+  display:inline-block;
+  transform-origin:50% 60%;
+  animation:cloutTrophy 3.2s ease-in-out infinite .2s;
+}
+@keyframes cloutTrophy{
+  0%,100% { filter:brightness(1); transform:translateY(0) rotate(0deg); }
+  40%     { filter:brightness(1.06); transform:translateY(-1px) rotate(-1deg); }
+}
+
+/* respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .picon.clout .halo,
+  .picon.clout .spark,
+  .picon.clout .emoji{ animation:none !important; opacity:1; transform:none; }
+}
 
 /* External link button in cards */
 .card .ext-link { position: absolute; top: 8px; right: 8px; width: 24px; height: 24px; display: inline-grid; place-items: center; color: var(--text); text-decoration: none; opacity: 0.8; transition: transform .15s ease, opacity .15s ease; }
