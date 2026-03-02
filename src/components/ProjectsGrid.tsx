@@ -14,7 +14,7 @@ type Project = {
 
 const GH = (process.env.NEXT_PUBLIC_GITHUB_URL as string) || 'https://github.com/japinder12'
 const projects: Project[] = [
-  { title: 'Path Planning & Control Sandbox  ', blurb: 'Path planning is abstract without visuals → Implemented interactive A* planning with Chaikin smoothing and Pure Pursuit/PID tracking.', tag: 'C++ · SFML', href: 'https://github.com/japinder12/path-planning', icon: '🤖', effect: 'planner' },
+  { title: 'Path Planning & Control Sandbox', blurb: 'Path planning is abstract without visuals → Implemented interactive A* planning with Chaikin smoothing and Pure Pursuit/PID tracking.', tag: 'C++ · SFML', href: 'https://github.com/japinder12/path-planning', icon: '🤖', effect: 'planner' },
   { title: 'Toronto Safety Dashboard', blurb: 'Created a user-friendly dashboard to explore Toronto Police Service MCI near any address — postal‑code search, time and radius filters, and colour legend.', tag: 'Next.js · Leaflet', href: 'https://toronto-safety-five.vercel.app', icon: '🗺️', effect: 'pintrip' },
   { title: 'LSTM Classical Music Generator', blurb: 'Symbolic‑music LSTM that generates multi‑bar classical‑style phrases; end‑to‑end MIDI pipeline from parsing → training → synthesis.', tag: 'ML · TensorFlow', href: 'https://github.com/japinder12/lstm-music-generator', icon: '🎼', effect: 'music' },
   { title: 'Encrypted File Sharing', blurb: 'Local storage lacked security → built an encrypted file system in Go (AES-GCM, HMAC) for safe sharing.', tag: 'Go · Security', href: 'https://github.com/japinder12/securefs-go', icon: '🔐', effect: 'filefly' },
@@ -22,7 +22,7 @@ const projects: Project[] = [
   { title: 'k‑NN Geolocation', blurb: 'Image geolocation via CLIP embeddings + k‑NN; grid‑searched k and PCA analysis delivered the lowest MDE in my experiments.', tag: 'ML · PyTorch', href: GH, icon: '🧭', effect: 'compass', linkOff: true },
   { title: 'cvmoji - emoji resume generator', blurb: 'Plain text resumes are boring → created a React/TypeScript generator that maps skills to emojis and exports SVG/PNG.', tag: 'React · Vite · pdf.js', href: 'https://cvmoji.vercel.app', icon: '🪪', effect: 'morph' },
   { title: 'LinkedOut', blurb: 'LinkedIn titles too plain? Type your role → get a cursed lineup of inflated, buzzword-heavy titles (with Meme Mode for extra LinkedIn clout).', tag: 'Next.js · TypeScript · Tailwind', href: 'https://linkedout-titles.vercel.app', icon: '🏆', effect: 'clout' },
-  { title: 'Shift Scheduler', blurb: 'Constraint‑aware matching automates data collection and shift assignments, improving scheduling accuracy and cut scheduling time by 30%.', tag: 'Apps Script', icon: '🗓️', effect: 'clockfloat', linkOff: true },
+  { title: 'Shift Scheduler', blurb: 'Constraint‑aware matching automates data collection and shift assignments, improving scheduling accuracy and cutting time by ~30%.', tag: 'Apps Script', icon: '🗓️', effect: 'clockfloat', linkOff: true },
 ]
 
 function TiltCard({ p }: { p: Project }) {

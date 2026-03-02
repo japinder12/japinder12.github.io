@@ -25,8 +25,8 @@ export default function Experience() {
       role: 'Software Engineer',
       period: 'May 2024 – Aug 2024 · Mountain View, CA',
       bullets: [
-        'Filing errors led to high customer support volume. Built and deployed Spring Boot REST API endpoints, improving data accuracy and reducing support calls by over 15%.',
-        'Data inconsistencies between backend and UI disrupted workflows. Integrated APIs into customer-facing UI and refined schemas, ensuring reliable transactions across thousands of daily filings.',
+        'Built and deployed Spring Boot REST API endpoints to fix filing data accuracy, cutting support calls by 15%+.',
+        'Integrated APIs into customer UI and refined schemas so backend and front end stay in sync across thousands of daily filings.',
       ],
       logo: '/logos/legalzoom.png',
     },
@@ -35,8 +35,8 @@ export default function Experience() {
       role: 'Software Engineer',
       period: 'Jun 2022 – Aug 2022 · Remote',
       bullets: [
-        'Distributed systems required tamper-proof validation. Implemented Merkle tree data structures in Go/Rust with MongoDB integration, reinforcing backend security.',
-        'Automated operational task workflows with secure scripts, cutting maintenance time by ~30%.'
+        'Implemented Merkle tree data structures in Go/Rust with MongoDB for tamper-proof validation in distributed systems.',
+        'Automated operational task workflows with scripts, cutting maintenance time by ~30%.',
       ],
       logo: '/logos/pienomial.png',
     },
@@ -45,7 +45,7 @@ export default function Experience() {
       role: 'Data Structures Course Staff',
       period: 'Jan 2023 – May 2023 · Berkeley, CA',
       bullets: [
-        'Supported 50+ students mastering core data structures and algorithms via 1:1 guidance and debugging, improving lab completion rates by ~25%.',
+        '1:1 guidance and debugging for 50+ students in data structures and algorithms; lab completion rates improved ~25%.',
       ],
       logo: '/logos/cs61bee.png',
     },
@@ -54,8 +54,7 @@ export default function Experience() {
       role: 'Community Service Officer',
       period: 'Nov 2022 – Jun 2024 · Berkeley, CA',
       bullets: [
-        'Manual shift scheduling for 80+ staff was slow and error-prone.',
-        'Took initiative to develop a shift scheduling tool, reducing scheduling time by >30% and boosting department efficiency.',
+        'Built a shift scheduling tool for 80+ staff, cutting scheduling time by >30% and reducing errors from manual planning.',
       ],
       logo: '/logos/ucpd_safewalk.png',
     },

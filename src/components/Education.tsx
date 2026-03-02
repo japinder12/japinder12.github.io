@@ -1,7 +1,6 @@
 type Edu = { school: string; degree: string; period?: string }
 
 export default function Education() {
-  // Replace with your real entry
   const edu: Edu = {
     school: 'University of California, Berkeley',
     degree: 'B.S. Electrical Engineering and Computer Sciences',

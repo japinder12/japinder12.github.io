@@ -106,7 +106,7 @@ export default function Hero() {
           ))}
         </div>
         <p className="sub reveal" style={{ transitionDelay: '220ms' }}>
-          Building friendly frontends, reliable backends and ship end-to-end features, effectively and efficiently.
+          Building friendly frontends and reliable backends, and shipping end-to-end features.
         </p>
       </div>
     </section>
