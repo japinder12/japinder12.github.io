@@ -15,8 +15,8 @@ export default function Experience() {
       role: 'Data Scientist / Data Engineer (Contract)',
       period: 'October 2025 – February 2026 · Oakland, CA',
       bullets: [
-        'Built end-to-end cost modeling pipeline (electricity vs. gas, EU ETS carbon pricing) for EU and US markets; processed large-scale plant capacity, energy intensity, and pricing data with reusable Python modules; produced per-plant savings metrics (€/t, €/day).',
-        'Delivered market-level summary tables and comparisons across cement, lime, steel, and glass; structured analysis notebooks for repeatable research workflows.',
+        'Built cost modeling pipeline (electricity vs. gas, EU ETS) for EU and US; Python modules for capacity, intensity, pricing; per-plant savings (€/t, €/day).',
+        'Delivered market-level analysis for multiple industries using notebooks for repeatable analysis.',
       ],
       logo: '/logos/calectra.png',
     },
